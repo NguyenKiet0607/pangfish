@@ -3,8 +3,18 @@
 @section('css')
 @endsection
 
-@section('body')
-    <!----><!---->
+<style>
+    /* Change body bg */
+
+    body {
+        background: url("{{ asset('images/background/bg-3.png') }}") !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+</style>
+
+<div class="h-screen flex items-center justify-center" id="game-screen">
     <div class="bacarat-1-page bg-type1">
         @include('client.header')
         <section class="slectgame-slide">
@@ -23,7 +33,7 @@
             </div>
         </section>
     </div>
-@endsection
+</div>
 
 @section('js')
 <!-- <script src="{{ asset('js/home.js') }}"></script> -->

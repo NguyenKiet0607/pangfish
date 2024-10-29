@@ -347,16 +347,20 @@ img {
 header {
     animation: fade-in 1s forwards;
     animation-delay: 0.5s;
-    background-image: linear-gradient(#101010, #18411a);
+    background-image: url("../images/background/bg-header.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     left: 0;
     opacity: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 99;
-    border-bottom: solid 2px #6befea;
+    border-bottom: solid 2px #3d9ce1;
 }
 header .header_wrapper {
+    position: relative;
     align-items: center;
     display: flex;
     justify-content: space-between;
@@ -364,8 +368,9 @@ header .header_wrapper {
 }
 header .header-col-L .header-logo {
     display: block;
-    height: 55px;
-    position: relative;
+    height: 80px;
+    position: absolute;
+    top: 0;
     width: 240px;
 }
 header .header-col-L .header-logo img {
@@ -379,6 +384,23 @@ header .header-col-L .header-logo img {
     top: 0;
     width: 100%;
 }
+header .header-col-R #user-info {
+    background: url(../images/background/bg-user-info.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 40px;
+}
+header .header-col-R #user-menu-dropdown {
+    background: url(../images/background/bg-user-menu-dropdown.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 220px;
+    height: 180px;
+}
+
 header .header-col-R {
     align-items: center;
     display: flex;
@@ -4937,4 +4959,11 @@ header .header-col-R .hamburger:hover .bar3 {
     .slectgame-slide .title-Page h1 {
         font-size: 1em;
     }
+}
+
+#game-screen {
+    background: url("../images/background/bg-games.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

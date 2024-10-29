@@ -80,3 +80,10 @@
     height: 543px;
     width: 436px !important;
 }
+
+#bg-intro {
+    background-image: url(../images/background/bg-2.png) !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: unset !important;
+}

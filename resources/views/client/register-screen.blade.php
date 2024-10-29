@@ -6,7 +6,7 @@
 
 @section('body')
 
-    {{-- <div class="fixed h-screen inset-0 z-20 flex items-center justify-center">
+    <div class="fixed h-screen inset-0 z-20 flex items-center justify-center">
         <div class="fixed h-screen inset-0 z-30" id="enter-username-overlay">
         </div>
 
@@ -43,13 +43,13 @@
             <a href="/" style="background: #4BE5E4 !important" class="btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
         </form>
     </div>
-     --}}
+    
 
-    <div class="fixed h-screen inset-0 z-20 flex items-center justify-center" id="enter-username-section">
+    {{-- <div class="fixed h-screen inset-0 z-20 flex items-center justify-center" id="enter-username-section">
         <div class="fixed h-screen inset-0 z-30" id="enter-username-overlay">
         </div>
 
-        {{-- <form id="enterUsernameForm" action="" class="flex flex-col justify-between w-[430px] h-[288px] z-40 rounded-3xl border-4 border-[#F9DF97] p-5">
+        <form id="enterUsernameForm" action="" class="flex flex-col justify-between w-[430px] h-[288px] z-40 rounded-3xl border-4 border-[#F9DF97] p-5">
             <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Nhập tên hiển thị" name="displayname" autocomplete="off" required="">
             
             <ul class="text-yellow-300 mt-3 mb-5 text-sm">
@@ -68,7 +68,7 @@
             <button style="background: linear-gradient(to right, #00ACE4, #4BE5E4);" type="submit" class="btn btn-model-cc py-2 !border-2 !border-white w-full text-white rounded-full">
                 Xác nhận
             </button>
-        </form> --}}
+        </form>
         
         <form id="registerSucessForm" action="" class="flex flex-col justify-between w-[430px] h-[288px] z-40 rounded-3xl p-5">
             <h1 class="mt-20 text-white font-bold text-xl text-center
@@ -78,7 +78,7 @@
                 Xác nhận
             </button>
         </form>
-    </div>
+    </div> --}}
 @endsection
 
 @section('js')
