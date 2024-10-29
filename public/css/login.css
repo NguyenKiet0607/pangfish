@@ -61,3 +61,22 @@
     background-size: contain;
     background-position: center;
 }
+
+.login-form-screen {
+    background: url(../images/background/bg-login-model2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.register-form-screen {
+    background-image: url(../images/background/bg-register.png) !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: unset !important;
+    border: unset !important;
+    border-radius: unset !important;
+    box-shadow: unset !important;
+    height: 543px;
+    width: 436px !important;
+}

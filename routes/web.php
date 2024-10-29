@@ -18,13 +18,16 @@ Route::get('/login', 'App\Http\Controllers\User\AuthController@showLoginForm')->
 Route::post('/login', 'App\Http\Controllers\User\AuthController@login')->name('action_login');
 Route::post('/register', 'App\Http\Controllers\User\UserController@store');
 
-Route::middleware('user.login')->group(function (){
+Route::get('/login-screen', 'App\Http\Controllers\User\AuthController@showLoginScreen')->name('user.login-screen');
+Route::get('/register-screen', 'App\Http\Controllers\User\AuthController@showRegisterScreen')->name('user.register-screen');
+
+Route::middleware('user.login')->group(function () {
     Route::get('/', 'App\Http\Controllers\User\GameController@index')->name('top-page');
     Route::get('/slot/{slug}', 'App\Http\Controllers\User\GameController@slot')->middleware('check.coin')->name('slot');
     Route::get('/game/{slug}/{id}', 'App\Http\Controllers\User\GameController@detailSlot')->middleware('check.coin')->name('detail-slot');
     Route::post('/logout', 'App\Http\Controllers\User\AuthController@logout');
     Route::post('/code', 'App\Http\Controllers\User\UserController@code')->name('code');
-    Route::prefix('api')->group(function() {
+    Route::prefix('api')->group(function () {
         Route::get('/user/current', 'App\Http\Controllers\User\UserController@profile');
         Route::post('/user/decrease-coin', 'App\Http\Controllers\User\UserController@decreaseCoin');
         Route::get('/games', 'App\Http\Controllers\User\GameController@games');
@@ -32,13 +35,12 @@ Route::middleware('user.login')->group(function (){
         Route::post('/games/percentage', 'App\Http\Controllers\User\GameController@percentage');
         Route::get('/game/round/{slug}', 'App\Http\Controllers\User\GameController@round');
     });
-
 });
 
 
 Route::get('/admin/login', 'App\Http\Controllers\Admin\AuthController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'App\Http\Controllers\Admin\AuthController@login')->name('admin.action_login');
-Route::middleware('admin.login')->group(function (){
+Route::middleware('admin.login')->group(function () {
     Route::get('/admin', function () {
         return view('admin.index');
     });

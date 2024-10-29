@@ -10,7 +10,7 @@
     <div class="relative z-10 flex flex-col items-center justify-center space-y-8">
         <img src="{{asset('images/graphics/logo-2.png')}}" alt="HACK BẮN CÁ" width="300" height="150" class="mb-20" />
         <div class="flex space-x-8">
-            <button class="relative group btn-item btn-register">
+            <a href="{{route('user.register-screen')}}" class="relative group">
                 <div class="relative flex items-center">
                     <img
                         src="{{asset('images/graphics/register-btn-img.png')}}"
@@ -24,8 +24,8 @@
                         <img src="{{asset('images/graphics/shark-gun-img.png')}}" alt="Shark with Gun" width="400" height="400" />
                     </div>
                 </div>
-            </button>
-            <button class="relative group btn-item btn-login">
+            </a>
+            <a href="{{route('user.login-screen')}}" class="relative group">
                 <div class="relative flex items-center">
                     <img
                         src="{{asset('images/graphics/login-btn-img.png')}}"
@@ -39,7 +39,7 @@
                         <img src="{{asset('images/graphics/fish-group-img.png')}}" alt="Shark with Gun" width="400" height="400" />
                     </div>
                 </div>
-            </button>
+            </a>
         </div>
     </div>
 

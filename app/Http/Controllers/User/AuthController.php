@@ -25,6 +25,16 @@ class AuthController extends Controller
         return view('client.login');
     }
 
+    public function showLoginScreen()
+    {
+        return view('client.login-screen');
+    }
+
+    public function showRegisterScreen()
+    {
+        return view('client.register-screen');
+    }
+
     public function login(Request $request)
     {
         $this->validateLogin($request);
@@ -32,8 +42,10 @@ class AuthController extends Controller
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
@@ -45,13 +57,13 @@ class AuthController extends Controller
             if ($request->hasSession()) {
                 $request->session()->put('auth.password_confirmed_at', time());
             }
-//            //reset creit = 0 if user not login in 3 days
-//            if ($user->last_login < now()->subDays(3)) {
-//                $user->coin = 0;
-//            }
+            //            //reset creit = 0 if user not login in 3 days
+            //            if ($user->last_login < now()->subDays(3)) {
+            //                $user->coin = 0;
+            //            }
 
             $user->last_login = now();
-//            //save ip of user login
+            //            //save ip of user login
             $user->ip = $request->ip();
             $user->save();
             return $this->sendLoginResponse($request);
@@ -69,9 +81,9 @@ class AuthController extends Controller
     {
         $this->guard()->logout();
 
-//        $request->session()->invalidate();
+        //        $request->session()->invalidate();
 
-//        $request->session()->regenerateToken();
+        //        $request->session()->regenerateToken();
 
         if ($response = $this->loggedOut($request)) {
             return $response;

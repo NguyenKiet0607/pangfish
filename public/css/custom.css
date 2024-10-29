@@ -612,8 +612,9 @@ body {
         display: block !important;
     }
     body {
-        background-image: url(../images/bg_MB1.png);
+        background-image: url(../images/background/bg-2.png);
         background-size: cover;
+        background-position: right;
     }
     .bg-login {
         background-image: url(../images/DN_1.png) !important;
