@@ -23,6 +23,7 @@
             }
         });
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body style="position: relative; min-height: 100%; top: 0px;">
