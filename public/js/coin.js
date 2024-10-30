@@ -32,6 +32,7 @@ $(document).ready(function () {
         $("#user-model").hide();
         $("#change-password-model").hide();
         $("#coin-alert-model").hide();
+        $("#round-modal").hide();
     });
 
     $(document).on("click", ".btn-tele", function () {

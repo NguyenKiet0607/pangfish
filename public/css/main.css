@@ -1269,7 +1269,7 @@ header .header-col-R .hamburger:hover .bar3 {
 }
 .model-logout .model-logout_wrapper .group_btn .btn-model-cc {
     animation: btn-item 2s ease-in-out infinite alternate;
-    background-image: linear-gradient(#00ACE4, #4BE5E4);
+    background-image: linear-gradient(#00ace4, #4be5e4);
     border: 1px solid #fff;
     border-radius: 30px;
     color: #fff;
@@ -4985,4 +4985,89 @@ header .header-col-R .hamburger:hover .bar3 {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+#bg-game-slot {
+    background: url("../images/background/bg-game-slot.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 90vw; /* 80% of the viewport width */
+    height: 80vh; /* 80% of the viewport height */
+}
+
+#bg-game-name {
+    background: url("../images/background/bg-game-name.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 500px; /* 80% of the viewport width */
+    height: 150px; /* 80% of the viewport height */
+    position: relative;
+    overflow: hidden;
+}
+
+.scrolling-text {
+    display: inline-block;
+    padding-left: 100%; /* Start outside the left edge */
+    white-space: nowrap;
+    animation: scroll-left 12s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-80%);
+    }
+}
+
+#bg-game-search {
+    background: url("../images/background/bg-game-search.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 280px; /* 80% of the viewport width */
+    height: 78px; /* 80% of the viewport height */
+}
+
+#round-time-bg {
+    background: url("../images/background/bg-round-time.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px; /* 80% of the viewport width */
+    height: 70px; /* 80% of the viewport height */
+}
+
+#bg-game-detail-progress-circle {
+    background: url("../images/background/bg-game-detail-progress-circle.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 250px; /* 80% of the viewport width */
+    height: 120px; /* 80% of the viewport height */
+    position: absolute;
+    bottom: calc(100% - 10px);
+    right: 0;
+}
+
+#bg-rounded-popup {
+    background: url("../images/background/bg-rounded-popup.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 887px;
+    height: 400px;
+}
+
+#bg-round-game-btn {
+    background: url("../images/background/bg-game-btn.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 70px;
 }

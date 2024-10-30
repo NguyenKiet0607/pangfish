@@ -192,7 +192,7 @@ body {
 }
 
 .slectslot_inner {
-    background-image: url(../images/111.png);
+    background-image: url(../images/background/bg-game-slot.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100vw; /* 80% of the viewport width */
@@ -202,7 +202,7 @@ body {
 }
 
 .slot_item {
-    background-image: url(../images/slot_item_bg.png);
+    /* background-image: url(../images/slot_item_bg.png); */
     background-repeat: no-repeat;
     background-size: cover;
     width: 230px;
@@ -219,7 +219,7 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
     color: #fff;
-    position: absolute;
+    /* position: absolute; */
     bottom: 30px;
     font-size: 14px;
     font-weight: 700;
@@ -243,12 +243,12 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(../images/percent_background.png); /* Set the path to your image */
-    background-size: cover;
+    background-image: url(../images/background/bg-game-progress-circle.png); /* Set the path to your image */
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1; /* Ensure the background image stays behind the text */
-    animation: spin 2s linear infinite; /* Adds the spinning animation */
+    /* animation: spin 2s linear infinite; */
 }
 
 @keyframes spin {
@@ -317,12 +317,13 @@ body {
     cursor: pointer;
 }
 .detail_game_inner1 {
-    background-image: url(../images/sdsdsdsd1.png);
+    background-image: url(../images/background/bg-game-detail.png);
     background-repeat: no-repeat;
     background-size: cover;
     height: 520px;
     border-radius: unset !important;
-    border: 1px solid #00ff84 !important;
+    border: 1px solid transparent !important;
+    /* border: 1px solid #00ff84 !important; */
     padding: 40px !important;
     background-color: unset !important;
     max-width: 1000px;
@@ -331,23 +332,20 @@ body {
     padding-left: 10px;
 }
 .img-parent {
-    background-image: url(../images/ss.png);
+    background-image: url(../images/background/bg-game-detail-circle.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 60px;
     height: 60px;
     position: relative;
-    padding-top: 12px;
-    padding-left: 12px;
 }
 .img-child {
-    background-image: url(../images/Vector-Smart-Object.png);
+    background-image: url(../images/background/bg-game-detail-circle.png);
     background-repeat: no-repeat;
     background-size: cover;
-    width: 55px;
+    width: 60px;
     height: 60px;
     position: relative;
-    padding: 7px;
     margin-left: 10px;
 }
 .ava2 {
@@ -360,29 +358,29 @@ body {
     font-weight: 700;
 }
 .count-down {
-    background-image: url(../images/2.png);
+    background-image: url(../images/background/bg-game-detail-countdown.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: right;
     width: 100%;
-    height: 40px;
     position: relative;
-    margin-top: 50px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 .count-down-title {
-    background: linear-gradient(#bde94b, #2dda4f);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #1fe7fe;
     font-weight: 700;
-    position: absolute;
-    font-size: 28px;
+    position: relative;
     bottom: 25px;
-    left: 20px;
 }
 .count-down-time {
-    left: 260px;
-    bottom: -15px;
-    font-size: 64px;
+    /* left: 260px;
+    bottom: -15px; */
+    font-size: 44px;
+    color: #1fe7fe;
+    margin-left: 18px;
 }
 .count-down-image {
     right: 40px;
@@ -469,7 +467,7 @@ body {
 }
 
 .progress-bar-a {
-    width: 50%;
+    width: 45%;
     height: 6px; /* Chiều cao của thanh progress */
     position: absolute;
     left: 0;
@@ -489,74 +487,71 @@ body {
 }
 
 .red::before {
-    background: repeating-linear-gradient(
+    /* background: repeating-linear-gradient(
         -45deg,
         cadetblue,
         cadetblue 10px,
         #fff 10px,
         #fff 20px
-    );
+    ); */
+    background: linear-gradient(90deg, #acad80, #f9ff58);
     animation-delay: 0s;
 }
 
 .green::before {
-    background: repeating-linear-gradient(
-        -45deg,
-        violet,
-        violet 10px,
-        #fff 10px,
-        #fff 20px
-    );
+    background: linear-gradient(90deg, #5ef033, #5df730);
     animation-delay: 1s;
 }
 
 .blue::before {
-    background: repeating-linear-gradient(
+    /* background: repeating-linear-gradient(
         -45deg,
         darkgreen,
         darkgreen 10px,
         #fff 10px,
         #fff 20px
-    );
+    ); */
+
     animation-delay: 2s;
 }
 
 .yellow::before {
-    background: repeating-linear-gradient(
+    /* background: repeating-linear-gradient(
         -45deg,
         orangered,
         orangered 10px,
         #fff 10px,
         #fff 20px
-    );
+    ); */
+    background: linear-gradient(90deg, #ae6763, #f91c10);
     animation-delay: 0s;
 }
 
 .progress-bar-a.red {
-    bottom: 35px;
-    left: 110px;
+    bottom: 26px;
+    left: 146px;
     right: 200px;
 }
 
 .progress-bar-a.green {
     bottom: 51px;
-    left: 110px;
+    left: 146px;
     right: 200px;
 }
 
 .progress-bar-a.blue {
     bottom: 67px;
-    left: 110px;
+    left: 146px;
     right: 200px;
 }
 
 .progress-bar-a.yellow {
-    bottom: 83px;
-    left: 110px;
+    bottom: 78px;
+    left: 146px;
     right: 200px;
 }
 .round {
-    position: absolute;
+    /* position: absolute;
     top: 33px;
     left: 25px;
     font-size: 24px;
@@ -565,7 +560,7 @@ body {
     background-image: linear-gradient(#3aed1a, #14461e);
     padding: 5px 10px;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
 .text-line {
@@ -834,5 +829,85 @@ body {
     .add_round_class {
         flex-direction: column;
         width: unset;
+    }
+}
+
+.animation-bar-1 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 16px;
+    border-radius: 30px;
+    /* background: rgba(0, 0, 0, 0.1);   */
+    /* box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25),
+        0 1px rgba(255, 255, 255, 0.08); */
+    border: 3px solid #fff;
+    background-color: #fff;
+}
+
+.animation-bar-1 span {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: 12px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-size: 100%;
+    background: #f56982 linear-gradient(to right, #00ace4, #4be5e4);
+    animation: progress-anim-1 3s infinite linear;
+}
+
+.animation-bar-1 .switch {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 25%;
+    border-radius: 8px;
+    background: #f56982 linear-gradient(to right, #00ace4, #4be5e4);
+}
+
+.animation-bar-1 span:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    border-radius: 15px;
+    background-image: linear-gradient(
+        45deg,
+        #ffffff 25%,
+        rgba(0, 0, 0, 0) 25%,
+        rgba(0, 0, 0, 0) 50%,
+        #ffffff 50%,
+        #ffffff 75%,
+        rgba(0, 0, 0, 0) 75%,
+        rgba(0, 0, 0, 0)
+    );
+    background-size: 30px 30px;
+    opacity: 0.3;
+    animation: progress-anim-1-after 0.2s infinite linear;
+}
+@keyframes progress-anim-1 {
+    0% {
+        width: 20%;
+    }
+    50% {
+        width: 70%;
+    }
+    100% {
+        width: 20%;
+    }
+}
+
+@keyframes progress-anim-1-after {
+    0% {
+        background-position: 0 100%;
+    }
+    100% {
+        background-position: 30px 100%;
     }
 }
