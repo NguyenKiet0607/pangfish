@@ -33,14 +33,14 @@
             </div>
 
             <div class="form-group">
-                <button style="background: #4BE5E4 !important" type="submit" class="btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng ký </button>
+                <button type="submit" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4]  btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng ký </button>
             </div>
             
             <div class="q-register !my-5">
                 Đã có tài khoản? <a href="{{route('user.login-screen')}}" class="btn-login !text-[#FFDE21]">Đăng nhập</a>
             </div>
 
-            <a href="/" style="background: #4BE5E4 !important" class="btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
+            <a href="/" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4]  btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
         </form>
     </div>
     

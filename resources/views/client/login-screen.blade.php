@@ -27,14 +27,14 @@
                 <button type="submit" class="btn btn-model-cc"> Đăng nhập </button>
             </div> --}}
             <div class="form-group">
-                <button style="background: #4BE5E4 !important" type="submit" class="btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng nhập </button>
+                <button type="submit" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng nhập </button>
             </div>
 
             <div class="q-register !my-5">
                 Chưa có tài khoản? <a href="{{route('user.register-screen')}}" class="btn-register text-yellow-300 hover:text-yellow-300 hover:text-underline">Đăng ký</a>
             </div>
 
-            <a href="/" style="background: #4BE5E4 !important" class="btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
+            <a href="/" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
         </form>
     </div>
 @endsection

@@ -384,7 +384,7 @@ header .header-col-L .header-logo img {
     top: 0;
     width: 100%;
 }
-header .header-col-R #user-info {
+header .header-col-R #user-name {
     background: url(../images/background/bg-user-info.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -985,7 +985,7 @@ header .header-col-R .hamburger:hover .bar3 {
     background: -webkit-linear-gradient(#fff 46%, #a7a7a7 58%);
     -webkit-background-clip: text;
     filter: drop-shadow(1px 3px #333);
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 10px;
@@ -1224,16 +1224,21 @@ header .header-col-R .hamburger:hover .bar3 {
     width: 100%;
 }
 .model-logout .model-logout_wrapper {
-    background-color: rgba(24, 65, 26, 0.5);
-    border: 3px solid #ffffff;
+    /* background-color: rgba(24, 65, 26, 0.5); */
+    background: url(../images/background/bg-popup.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* border: 3px solid #ffffff; */
     border-radius: 50px;
-    box-shadow: inset 0 0 10px 0 #22d94f, 0 0 10px 0 #22d94f;
-    /* max-width: 800px; */
+    /* box-shadow: inset 0 0 10px 0 #22d94f, 0 0 10px 0 #22d94f; */
+    width: 587px;
+    height: 300px;
     opacity: 0;
     padding: 40px 60px 55px;
     transform: translateY(-200%);
     transition: 1s;
-    width: 100%;
+    /* width: 100%; */
     z-index: 2;
 }
 .model-logout .model-logout_wrapper .model-title {
@@ -1241,17 +1246,15 @@ header .header-col-R .hamburger:hover .bar3 {
 }
 .model-logout .model-logout_wrapper .model-title h1 {
     filter: drop-shadow(1px 3px #333);
-    font-size: 60px;
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 20px;
     color: #fff;
 }
 .model-logout .model-logout_wrapper h3 {
-    background: linear-gradient(#bfe94b, #22d94f);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #00ff09;
+    text-shadow: 1px 1px #000;
     font-size: 35px;
     font-weight: 700;
     text-align: center;
@@ -1266,7 +1269,7 @@ header .header-col-R .hamburger:hover .bar3 {
 }
 .model-logout .model-logout_wrapper .group_btn .btn-model-cc {
     animation: btn-item 2s ease-in-out infinite alternate;
-    background-image: linear-gradient(#bfe94b, #22d94f);
+    background-image: linear-gradient(#00ACE4, #4BE5E4);
     border: 1px solid #fff;
     border-radius: 30px;
     color: #fff;
@@ -4966,4 +4969,20 @@ header .header-col-R .hamburger:hover .bar3 {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+#change-password-form {
+    background: url("../images/background/bg-change-password.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 587px;
+    height: 500px;
+}
+
+#changePasswordSuccessForm {
+    background: url(../images/background/bg-register-success.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }

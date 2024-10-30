@@ -9,7 +9,7 @@
         <div class="header-col-R">
 
             <div class="header-group-btn flex items-center gap-2 relative"> 
-                <div id="user-info" class="flex items-center justify-center text-white">
+                <div id="user-name" class="flex items-center justify-center text-white">
                     Vin
                 </div>
 
@@ -35,20 +35,20 @@
                     </ul> --}}
                     <ul id="user-menu-dropdown" class="px-4 pt-2 text-sm">
                         <li class="flex items-center justify-between py-2.5 border-b border-white">
-                            <a href="/" class="text-white" >Thông tin tài khoản</a>
+                            <apan class="text-white flex-1 btn-user-model cursor-pointer" >Thông tin tài khoản</apan>
                             
                             <img width="20" height="20" src="{{asset('images/graphics/arrow-narrow-right.png')}}" alt="">
                         </li>
                         <li class="flex items-center justify-between py-2.5 border-b border-white">
-                            <span class="text-white btn-coin cursor-pointer">Nạp xu</span>
+                            <span class="text-white flex-1 btn-coin cursor-pointer">Nạp xu</span>
                             <img width="20" height="20" src="{{asset('images/graphics/arrow-narrow-right.png')}}" alt="">
                         </li>
                         <li class="flex items-center justify-between py-2.5 border-b border-white">
-                            <span class="text-white btn-help cursor-pointer">Hỗ trợ</span>
+                            <span class="text-white flex-1 btn-help-model cursor-pointer">Hỗ trợ</span>
                             <img width="20" height="20" src="{{asset('images/graphics/arrow-narrow-right.png')}}" alt="">
                         </li>
                         <li class="flex items-center justify-between py-2.5">
-                            <span class="text-white btn-logout1 cursor-pointer">Đăng xuất</span>
+                            <span class="text-white flex-1 btn-logout1 cursor-pointer">Đăng xuất</span>
                             <img width="18" height="18" src="{{asset('images/graphics/logout-img.png')}}" alt="">
                         </li>
                     </ul>
