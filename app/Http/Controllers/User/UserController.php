@@ -28,10 +28,9 @@ class UserController extends Controller
     public function decreaseCoin()
     {
         $user = auth()->user();
-        $user->expired_time = $user->expired_time > 0 ? $user->expired_time - 2 :
-            ($user->coin > 0 ? $user->coin*env('DECREASE_COIN_TIME', 30) - 2 : 0);
+        $user->expired_time = $user->expired_time > 0 ? $user->expired_time - 2 : ($user->coin > 0 ? $user->coin * env('DECREASE_COIN_TIME', 30) - 2 : 0);
 
-        $user->coin = ceil($user->expired_time/env('DECREASE_COIN_TIME', 30));
+        $user->coin = ceil($user->expired_time / env('DECREASE_COIN_TIME', 30));
         $user->save();
 
         return response([
@@ -50,7 +49,7 @@ class UserController extends Controller
             'phone' => 'bail|nullable|min:10|max:15|unique:users',
             'phone_zalo' => 'bail|nullable|min:10|max:15|unique:users',
             'password' => 'bail|required|min:6|max:20|confirmed',
-         ],[
+        ], [
             'username.required' => 'Tên tài khoản là bắt buộc',
             'phone.required' => 'Số điện thoại là bắt buộc',
             'phone_zalo.required' => 'Số điện thoại zalo/tele là bắt buộc',
@@ -70,7 +69,7 @@ class UserController extends Controller
             'phone_zalo.unique' => 'Số điện thoại zalo/tele đã tồn tại',
 
         ]);
-        if($validator->fails()) {
+        if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json([
                 'message' => $error
@@ -79,7 +78,7 @@ class UserController extends Controller
 
         $input = $validator->validated();
 
-        try{
+        try {
             $user = new User();
             $user->fill($input);
             $user->password = bcrypt($request->password);
@@ -89,13 +88,12 @@ class UserController extends Controller
                 'code' => 200,
                 'message' => 'success'
             ]);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json([
                 'code' => 500,
                 'message' => $e->getMessage()
             ], 500);
         }
-
     }
 
     public function credit(Request $request)
@@ -110,13 +108,15 @@ class UserController extends Controller
 
     public function code(Request $request)
     {
-        $code = Code::getAll(['buy' => true, 'code' => $request->code],
+        $code = Code::getAll(
+            ['buy' => true, 'code' => $request->code],
             ['*'],
-            true)->first();
-        if ($code){
+            true
+        )->first();
+        if ($code) {
             $message = $code->status ? 'success' : 'used';
             $user = auth()->user();
-            if ($code->status){
+            if ($code->status) {
                 DB::beginTransaction();
                 try {
                     //increase coin to user
@@ -129,9 +129,9 @@ class UserController extends Controller
                     $code->save();
 
                     DB::commit();
-                }catch (\Exception $exception){
+                } catch (\Exception $exception) {
                     DB::rollBack();
-                    Log::error('Increase credit error: '.$exception->getMessage());
+                    Log::error('Increase credit error: ' . $exception->getMessage());
                     return response([
                         'code' => 200,
                         'message' => 'Error'
@@ -149,5 +149,47 @@ class UserController extends Controller
             'code' => 404,
             'message' => 'Invalid'
         ], 200);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $user = auth()->user();
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'new_password' => 'required|min:6|max:20|confirmed',
+        ], [
+            'old_password.required' => 'Mật khẩu cũ là bắt buộc',
+            'new_password.required' => 'Mật khẩu mới là bắt buộc',
+            'new_password.min' => 'Mật khẩu mới từ 6 đến 20 ký tự',
+            'new_password.max' => 'Mật khẩu mới từ 6 đến 20 ký tự',
+            'new_password.confirmed' => 'Mật khẩu mới không khớp',
+        ]);
+        if ($validator->fails()) {
+
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 422, [], JSON_UNESCAPED_UNICODE);
+        }
+        $input = $validator->validated();
+
+        if (!password_verify($input['old_password'], $user->password)) {
+
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'old_password' => ['Mật khẩu cũ không đúng']
+                ],
+            ], 422, [], JSON_UNESCAPED_UNICODE);
+        }
+
+        $user->password = bcrypt($input['new_password']);
+        $user->save();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'success'
+        ]);
     }
 }

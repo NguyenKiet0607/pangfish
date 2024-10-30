@@ -775,7 +775,11 @@ body {
     }
     .header-group-btn {
         padding: 0 !important;
-        background-color: rgba(6, 50, 31, 0.95) !important;
+        background-color: #00ace4 !important;
+        /* background-color: rgba(6, 50, 31, 0.95) !important; */
+    }
+    .header-group-btn .logo-mobile {
+        padding: 0px !important;
     }
     .header-group-btn div {
         padding: 25px;
@@ -785,7 +789,7 @@ body {
     }
     .logo-mobile {
         display: block;
-        border-bottom: 2px solid rgba(34, 217, 79, 1);
+        border-bottom: 2px solid #fff;
         padding: 25px;
     }
     #register-model .bg-login {

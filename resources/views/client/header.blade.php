@@ -60,9 +60,9 @@
             </script>
 
             <!-- <div class="header-mobile"> -->
-                {{-- <div class="header-group-btn">
+                <div class="header-group-btn lg:!hidden">
                     <div class="logo-mobile"><img src="{{ asset('images/graphics/logo-header.png') }}" alt=""></div>
-                    <div class="heeader-btn_item" id="user-name"></div>
+                    {{-- <div class="heeader-btn_item" id="user-name"></div> --}}
                     <div class="heeader-btn_item">
                         Xu <span class="ml-1" id="coin"></span>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="heeader-btn_item btn-logout1">
                         Đăng xuất
                     </div>
-                </div> --}}
+                </div>
             <!-- </div> -->
 
             <div class="hamburger">

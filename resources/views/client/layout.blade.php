@@ -81,7 +81,6 @@
     </div>
 </div>
 
-
 <div class="model-logout model-logout_active" style="display: none" id="help-model">
     <div class="model-logout_overlay"></div>
     <div class="model-logout_wrapper relative flex flex-col justify-around items-center">
@@ -95,6 +94,9 @@
             <h1>Bạn cần hỗ trợ?</h1>
             <h1>Vui lòng liên hệ với Admin</h1>
         </div>
+        <h3 class="my-2 !text-lg"> 
+
+        </h3>
         <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help">
             <div class="border-2 border-white rounded-full size-[35px]">
                 <img  width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
@@ -136,32 +138,38 @@
     <div class="model-logout_overlay"></div>
     <div class="relative flex flex-col justify-around items-center">
         <form id="change-password-form" class="relative p-[100px] flex flex-col justify-around">
-             <img class="close-btn absolute top-[4px] right-[2px] cursor-pointer" width="96" height="96" src="{{asset('images/graphics/close-btn.png')}}" alt="">
+            <img class="close-btn absolute top-[4px] right-[2px] cursor-pointer" width="96" height="96" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         
             <div class="form-group">
-                <input type="password" class="form-control !text-left !text-blue-500 !placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Mật khẩu cũ" name="password" autocomplete="off" required="">
+                <input type="password" class="form-control !text-left !text-blue-500 !placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Mật khẩu cũ" name="old_password" autocomplete="off" required="">
+
+                <p id="old-password-error" class="text-yellow-300 mt-1"></p>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control !text-left !text-blue-500 !placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Mật khẩu mới" name="password_confirmation" autocomplete="off" required="">
+                <input type="password" class="form-control !text-left !text-blue-500 !placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Mật khẩu mới" name="new_password" autocomplete="off" required="">
+
+                <p id="new-password-error" class="text-yellow-300 mt-1"></p>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control !text-left !text-blue-500 !placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Xác nhận mật khẩu" name="password_confirmation" autocomplete="off" required="">
+                <input type="password" class="form-control !text-left !text-blue-500 !placeholder:text-[#01c0fa] !border-2 !border-[#01c0fa] !rounded-full" placeholder="Xác nhận mật khẩu" name="new_password_confirmation" autocomplete="off" required="">
+
+                <p id="new-password-confirmation-error" class="text-yellow-300 mt-1"></p>
             </div>
             
             <div class="form-group">
-                <button type="submit" class="bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cc py-2 !border-2 !border-white w-full !border-2 border-blue-500 !rounded-full text-white"> Đăng ký </button>
+                <button id="btn-change-password" type="submit" class="bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cc py-2 !border-2 !border-white w-full !border-2 border-blue-500 !rounded-full text-white"> Đăng ký </button>
             </div>
         </form>
     </div>
 </div>
 {{-- Change password alert --}}
-<div class="model-logout model-logout_active" style="display: none" id="change-password-success-model">
+<div class="model-logout model-logout_active" id="change-password-success-model" style="display: none">
     <div class="model-logout_overlay"></div>
     <form id="changePasswordSuccessForm" action="" class="flex flex-col justify-between w-[430px] h-[288px] z-40 rounded-3xl p-5">
         <h1 class="mt-20 text-white font-bold text-xl text-center text-uppercase
         ">Mật khẩu của bạn được thay đổi thành công</h1>
     
-        <button style="background: linear-gradient(to right, #00ACE4, #4BE5E4);" type="submit" class="btn btn-model-cc py-2 !border-2 !border-white w-full text-white !rounded-full">
+        <button type="button" style="background: linear-gradient(to right, #00ACE4, #4BE5E4);"  class="btn btn-model-cc py-2 !border-2 !border-white w-full text-white !rounded-full">
             Xác nhận
         </button>
     </form>
@@ -209,6 +217,72 @@
 ]) --}}
 @yield('js')
 
+<script>
+    // Change password
+
+    const changePasswordForm = document.getElementById('change-password-form');
+
+    changePasswordForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        $.ajax({
+            url: "/change-password",
+            method: "POST",
+            data: $("#change-password-form").serialize(),
+            success: function (data) {
+                // window.location.reload();
+
+                // Ẩn form đổi mật khẩu
+                $("#change-password-model").hide();
+
+                // Hiện thông báo đổi mật khẩu thành công
+                $("#change-password-success-model").show();
+
+            },
+            error: function (e) {
+                console.log("e.responseJSON.errors: ", e.responseJSON.errors);
+
+                const newPasswordFieldErrors = e.responseJSON.errors["new_password"]
+                const oldPasswordFieldErrors = e.responseJSON.errors["old_password"]
+                const newPasswordConfirmationFieldErrors = e.responseJSON.errors["new_password_confirmation"]
+
+
+                // Render ra id của error từng field
+                if (newPasswordFieldErrors) {
+                    $("#new-password-error").text(newPasswordFieldErrors[0]);
+                } else {
+                    $("#new-password-error").text('');
+                }
+
+                if (oldPasswordFieldErrors) {
+                    $("#old-password-error").text(oldPasswordFieldErrors[0]);
+                } else {
+                    $("#old-password-error").text('');
+                }
+
+                if (newPasswordConfirmationFieldErrors) {
+                    $("#new-password-confirmation-error").text(newPasswordConfirmationFieldErrors[0]);
+                } else {
+                    $("#new-password-confirmation-error").text('');
+                }
+                
+
+                // if (e.status === 422) {
+                //     $.each(e.responseJSON.errors, function (key, value) {
+                //         $("#help-model h3").append(
+                //             "<div>" + value[0] + "</div>"
+                //         );
+                //     });
+                // } else {
+                //     $("#help-model h3").text(
+                //         "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."
+                //     );
+                // }
+                // $("#help-model").show();
+            },
+        });
+    });
+</script>
 
 </body>
 

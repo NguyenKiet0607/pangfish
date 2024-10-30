@@ -33,20 +33,22 @@
 						</div>
 	  
 						<div class="relative flex justify-start items-center ps-7" id="bg-game-search">
-							<span class="text-left text-white">Nhập tên game</span>
-							<img class="absolute top-[8px] right-0" width="64px" height="64px" src="{{asset('images/graphics/btn-game-search.png')}}" alt="">
+							<input id="game-search-input" type="text" class="bg-transparent border-none text-white text-left focus:outline-none" placeholder="Nhập tên game">
+							
+							<img class="absolute top-[8px] right-0 cursor-pointer" width="64px" height="64px" src="{{asset('images/graphics/btn-game-search.png')}}" alt="">
 						</div>
 					</div>
 
-					<div class="grid grid-cols-3 gap-5 overflow-y-auto max-h-[50vh]">
+					<div id="game-list" class="grid grid-cols-3 gap-5 overflow-y-auto max-h-[50vh]">
 						@foreach($slots as $slot)
-							
-							<a href="{{ route('detail-slot', [$slot->slug, $slot->id]) }}">
+							<a class="game-item" data-name="{{$slot->name}}" href="{{ route('detail-slot', [$slot->slug, $slot->id]) }}">
 							  <div class="slot_item">
 								<div class="slot_image">
 									<img alt="slot image" src="{{ asset('images/'.$slot->image_url) }}">
 								</div>
-								<div class="slot_title mb-2">{{ $slot->name }}</div>
+								<div class="slot_title mb-2">
+									<span>{{ $slot->name }}</span>
+								</div>
 								<div class="slot_percent_1 percent_{{ $slot->id }}">
 									{{ $slot->percent }}
 								</div>
@@ -71,35 +73,6 @@
 				
 			</section>
 		</div>
-        {{-- <section class="slectgame-slide">
-          <div class="slectgame_inner col-md-8 col-11 slectslot_inner">
-            <div class="title-Page">
-              <div class="btn-back">
-                <a href="/"><img src="{{ asset('images/333.png') }}" alt="back"></a>
-              </div>
-              <h1>{{ $game->name }}</h1>
-            </div>
-            <div class="slot_wrapper slot_detail_wrapper">
-              @foreach($slots as $slot)
-              <a href="{{ route('detail-slot', [$slot->slug, $slot->id]) }}">
-                <div class="slot_item">
-                  <div class="slot_image">
-                    <img alt="slot image" src="{{ asset('images/'.$slot->image_url) }}">
-                  </div>
-                  <div class="slot_title">{{ $slot->name }}</div>
-                  <div class="slot_percent_1 percent_{{ $slot->id }}">
-                      {{ $slot->percent }}%
-                  </div>
-                  <div class="slot_percent_2 percent_{{ $slot->id }}">{{ $slot->percent }}%</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar"></div>
-                    </div>
-                </div>
-              </a>
-              @endforeach
-            </div>
-          </div>
-        </section> --}}
       </div>
     @endsection
 
@@ -114,24 +87,68 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
-			const gameName = document.getElementById('bg-game-name');
-			const textElement = gameName.querySelector('span');
+			const gameChildTitles = document.querySelectorAll('.slot_title');
 
-			// Create a temporary element to measure text width
-			const tempElement = document.createElement('span');
-			tempElement.style.visibility = 'hidden';
-			tempElement.style.whiteSpace = 'nowrap';
-			tempElement.style.position = 'absolute';
-			tempElement.style.fontSize = window.getComputedStyle(textElement).fontSize;
-			tempElement.textContent = textElement.textContent;
+			gameChildTitles.forEach((gameName) => {
+				const textElement = gameName.querySelector('span');
 
-			document.body.appendChild(tempElement);
+				// Create a temporary element to measure text width
+				const tempElement = document.createElement('span');
+				tempElement.style.visibility = 'hidden';
+				tempElement.style.whiteSpace = 'nowrap';
+				tempElement.style.position = 'absolute';
+				tempElement.style.fontSize = window.getComputedStyle(textElement).fontSize;
+				tempElement.textContent = textElement.textContent;
 
-			if (tempElement.offsetWidth > 450) {
-				textElement.classList.add('scrolling-text');
+				document.body.appendChild(tempElement);
+
+				if (tempElement.offsetWidth > 120) {
+					textElement.classList.add('scrolling-text');
+				}
+
+				document.body.removeChild(tempElement);
+
+
+			});
+		});
+	</script>
+
+	{{-- Search --}}
+	<script>
+		// Handle autocomplete search
+		const searchInput = document.getElementById('game-search-input');
+		const gameList = document.getElementById('game-list');
+
+		searchInput.addEventListener('input', (e) => {
+		    const searchValue = e.target.value ? e.target.value.trim().toLowerCase() : '';
+		    const gameItems = gameList.querySelectorAll('.game-item');
+
+			// Check empty search
+			if (searchValue === '') {
+				gameItems.forEach((gameItem) => {
+					gameItem.style.display = 'block';
+				})
+				return;
 			}
 
-			document.body.removeChild(tempElement);
+			
+		    gameItems.forEach((gameItem) => {
+		        const gameName = gameItem.getAttribute('data-name');
+
+		        if (gameName) { // Kiểm tra nếu gameName không phải null
+		            const gameNameLowerCase = gameName.toLowerCase();
+
+		            if (gameNameLowerCase.includes(searchValue)) {
+		                gameItem.style.display = 'block';
+		            } else {
+		                gameItem.style.display = 'none';
+		            }
+		        } else {
+		            console.warn("data-name attribute is missing for game item:", gameItem);
+		            gameItem.style.display = 'none'; // Ẩn nếu không có data-name
+		        }
+		    });
 		});
+
 	</script>
 @endsection

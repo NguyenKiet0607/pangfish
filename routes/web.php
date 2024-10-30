@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\ConfigController;
 use Illuminate\Support\Facades\Route;
+use Mews\Captcha\Facades\Captcha;
+use App\Http\Controllers\User\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', 'App\Http\Controllers\User\AuthController@showLoginForm')->name('user.login');
 Route::post('/login', 'App\Http\Controllers\User\AuthController@login')->name('action_login');
-Route::post('/register', 'App\Http\Controllers\User\UserController@store');
+Route::post('/register', [AuthController::class, 'register'])->name('action_register');
+Route::post('/register-displayname', [AuthController::class, 'registerDisplayName'])->name('action_register_displayname');
+
+Route::get('/refresh-captcha', function () {
+    return Captcha::src();
+});
 
 Route::get('/login-screen', 'App\Http\Controllers\User\AuthController@showLoginScreen')->name('user.login-screen');
 Route::get('/register-screen', 'App\Http\Controllers\User\AuthController@showRegisterScreen')->name('user.register-screen');
@@ -35,6 +42,7 @@ Route::middleware('user.login')->group(function () {
         Route::post('/games/percentage', 'App\Http\Controllers\User\GameController@percentage');
         Route::get('/game/round/{slug}', 'App\Http\Controllers\User\GameController@round');
     });
+    Route::post("/change-password", "App\Http\Controllers\User\UserController@changePassword")->name('change-password');
 });
 
 

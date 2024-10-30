@@ -13,7 +13,8 @@ class GameController extends Controller
 {
     public function index()
     {
-        $games = (new Game())->getParentGames();
+        // $games = (new Game())->getParentGames();
+        $games = Game::paginate(12);
         return view('client/index', compact('games'));
     }
 
@@ -29,8 +30,8 @@ class GameController extends Controller
     {
         $games = (new Game())->getGame($request->query());
 
-        if($request->get('parent_id') > 0){
-            foreach($games as $game){
+        if ($request->get('parent_id') > 0) {
+            foreach ($games as $game) {
                 $game->percentage = 10;
             }
         }
@@ -47,20 +48,20 @@ class GameController extends Controller
     public function detailGame($slug)
     {
         $game = (new Game())->where('slug', $slug)->orWhere('id', $slug)->first();
-        if($game) {
-            if($game->parent_id > 0){
+        if ($game) {
+            if ($game->parent_id > 0) {
                 $gameParent = Game::find($game->parent_id);
                 $game->parent = $gameParent;
             }
-            if($game->round_start && $game->round_end){
-                $game->round = Carbon::parse($game->round_start)->format('H:i').' - '.Carbon::parse($game->round_end)->format('H:i');
+            if ($game->round_start && $game->round_end) {
+                $game->round = Carbon::parse($game->round_start)->format('H:i') . ' - ' . Carbon::parse($game->round_end)->format('H:i');
             }
             return response([
                 'meta' => null,
                 'result' => $game,
                 'status' => 'successful'
             ], 200);
-        }else{
+        } else {
             return response([
                 'meta' => null,
                 'result' => null,
@@ -87,8 +88,8 @@ class GameController extends Controller
     {
         $games = Game::select('id', 'percent')->whereIn('id', $request->get('ids'))->get();
         $data = [];
-        foreach($games as $game){
-            if($game->percent >=100)
+        foreach ($games as $game) {
+            if ($game->percent >= 100)
                 $data[$game->id] = 100;
             else
                 $data[$game->id] = $game->percent;
@@ -107,7 +108,7 @@ class GameController extends Controller
     {
         $game = (new Game())->where('slug', $slug)->first();
         return response([
-            'round' => $game ? Carbon::parse($game->round_start)->format('H:i').' - '.Carbon::parse($game->round_end)->format('H:i') : 'null - null',
+            'round' => $game ? Carbon::parse($game->round_start)->format('H:i') . ' - ' . Carbon::parse($game->round_end)->format('H:i') : 'null - null',
             'count' => $game ? $game->round_count : 'null'
         ]);
     }

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
 
+use Illuminate\Support\Facades\Validator;
+
 class AuthController extends Controller
 {
     protected string $redirectTo = '/';
@@ -33,6 +35,122 @@ class AuthController extends Controller
     public function showRegisterScreen()
     {
         return view('client.register-screen');
+    }
+
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|min:3|max:50|unique:users,username',
+            'phone' => 'required|string|regex:/^0[0-9]{9}$/|unique:users,phone',
+            'password' => 'required|string|min:6|confirmed',
+            'register_code' => 'required|captcha'
+        ], [
+            'username.required' => 'Tên người dùng là bắt buộc.',
+            'username.string' => 'Tên người dùng phải là chuỗi.',
+            'username.min' => 'Tên người dùng phải có ít nhất 3 ký tự.',
+            'username.max' => 'Tên người dùng không được vượt quá 50 ký tự.',
+            'username.unique' => 'Tên người dùng đã tồn tại.',
+
+            'phone.required' => 'Số điện thoại là bắt buộc.',
+            'phone.string' => 'Số điện thoại phải là chuỗi.',
+            'phone.regex' => 'Số điện thoại không hợp lệ.',
+            'phone.unique' => 'Số điện thoại đã tồn tại.',
+
+            'password.required' => 'Mật khẩu là bắt buộc.',
+            'password.string' => 'Mật khẩu phải là chuỗi.',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp.',
+
+            'register_code.required' => 'Mã đăng ký là bắt buộc.',
+            'register_code.captcha' => 'Mã xác nhận không hợp lệ.'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 422, [], JSON_UNESCAPED_UNICODE);
+        }
+
+
+        // Khởi tạo mảng lỗi
+        $errors = [];
+
+        // Kiểm tra xem username hoặc phone đã tồn tại chưa
+        if (User::where('username', $request->username)->exists()) {
+            $errors['username'] = ['Tên người dùng đã tồn tại.'];
+        }
+
+        if (User::where('phone', $request->phone)->exists()) {
+            $errors['phone'] = ['Số điện thoại đã tồn tại.'];
+        }
+
+        // Nếu có lỗi, trả về tất cả các lỗi
+        if (!empty($errors)) {
+            return response()->json([
+                'success' => false,
+                'errors' => $errors,
+            ], 422, [], JSON_UNESCAPED_UNICODE);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Đăng ký thành công!'
+        ], 201, [], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function registerDisplayName(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|string|min:3|max:50|unique:users,username',
+            'phone' => 'required|string|regex:/^0[0-9]{9}$/|unique:users,phone',
+            'password' => 'required|string|min:6|confirmed',
+            'displayname' => 'required|string|min:3|max:50',
+        ], [
+            'username.required' => 'Tên người dùng là bắt buộc.',
+            'username.string' => 'Tên người dùng phải là chuỗi.',
+            'username.min' => 'Tên người dùng phải có ít nhất 3 ký tự.',
+            'username.max' => 'Tên người dùng không được vượt quá 50 ký tự.',
+            'username.unique' => 'Tên người dùng đã tồn tại.',
+
+            'phone.required' => 'Số điện thoại là bắt buộc.',
+            'phone.string' => 'Số điện thoại phải là chuỗi.',
+            'phone.regex' => 'Số điện thoại không hợp lệ.',
+            'phone.unique' => 'Số điện thoại đã tồn tại.',
+
+            'password.required' => 'Mật khẩu là bắt buộc.',
+            'password.string' => 'Mật khẩu phải là chuỗi.',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự.',
+            'password.confirmed' => 'Mật khẩu xác nhận không khớp.',
+
+            'displayname.required' => 'Tên hiển thị là bắt buộc.',
+
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ], 422, [], JSON_UNESCAPED_UNICODE);
+        }
+
+        // Create user
+
+        $user = User::create([
+            'username' => $request->username,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password), // Hash password
+            'name' => $request->displayname,
+            'coin' => 0,
+        ]);
+
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Đăng ký thành công!',
+            'data' => $user
+        ], 201, [], JSON_UNESCAPED_UNICODE);
     }
 
     public function login(Request $request)
