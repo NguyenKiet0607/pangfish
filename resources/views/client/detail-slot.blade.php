@@ -27,7 +27,7 @@
                     <div class="col-8 ava2">
                         <div class="d-flex">
                             <div class="img-parent flex justify-center items-center">
-                                <img class="rounded-full size-[40px]" alt="" src="{{ asset('images/games/'.$gameParent->image_url) }}" height="35px">
+                                <img class="rounded-full size-[40px]" alt="" src="{{ asset('images/'.$gameParent->image_url) }}" height="35px">
                             </div>
                             <div class="img-child flex justify-center items-center">
                                 <img class="rounded-full size-[40px]" alt="" src="{{ asset('images/'.$game->image_url) }}">
@@ -82,9 +82,11 @@
             </div>
             <div class=".slectslot_inner detail_game_inner2 col-11">
                 <div class="title-Page">
-                    <div class="btn-back">
-                        <a href="/slot/{{ $gameParent->slug }}"><img src="{{ asset('images/333.png') }}" alt="back"></a>
+                    <div class="btn-back bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] p-3 rounded-full text-white">
+                        {{-- <a href="/slot/{{ $gameParent->slug }}"><img src="{{ asset('images/333.png') }}" alt="back"></a> --}}
+                        Quay lại
                     </div>
+                    
                     <h1>{{ $game->name }}</h1>
                 </div>
                 <div class="slot_wrapper">
@@ -101,7 +103,7 @@
                         <div class="count-down-time">19:00</div>
                     </div>
                 </div>
-                <div class="round">Nhận khung giờ chơi</div>
+                <div class="round bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] px-3 py-2 text-white rounded-full">Nhận khung giờ chơi</div>
                 <div id="text-line1-mobile" class="text-line-mobile" ></div>
                 <div id="text-line2-mobile" class="text-line-mobile""></div>
             </div>

@@ -156,13 +156,17 @@ class UserController extends Controller
         $user = auth()->user();
         $validator = Validator::make($request->all(), [
             'old_password' => 'required',
-            'new_password' => 'required|min:6|max:20|confirmed',
+            'new_password' => 'required|min:6|max:20',
+            'new_password_confirmation' => 'required|same:new_password'
         ], [
             'old_password.required' => 'Mật khẩu cũ là bắt buộc',
             'new_password.required' => 'Mật khẩu mới là bắt buộc',
             'new_password.min' => 'Mật khẩu mới từ 6 đến 20 ký tự',
             'new_password.max' => 'Mật khẩu mới từ 6 đến 20 ký tự',
-            'new_password.confirmed' => 'Mật khẩu mới không khớp',
+            'new_password_confirmation.required' => 'Xác nhận mật khẩu mới là bắt buộc',
+            'new_password_confirmation.same' => 'Xác nhận mật khẩu không khớp với mật khẩu mới',
+
+
         ]);
         if ($validator->fails()) {
 

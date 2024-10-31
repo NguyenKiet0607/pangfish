@@ -33,6 +33,7 @@ $(document).ready(function () {
         $("#change-password-model").hide();
         $("#coin-alert-model").hide();
         $("#round-modal").hide();
+        $("#change-password-success-model").hide();
     });
 
     $(document).on("click", ".btn-tele", function () {

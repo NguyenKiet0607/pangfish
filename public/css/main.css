@@ -2098,7 +2098,7 @@ header .header-col-R .hamburger:hover .bar3 {
     border-bottom-right-radius: 15px;
 }
 .slectgame-slide .title-Page {
-    background-image: url(../images/222.png);
+    /* background-image: url(../images/222.png); */
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: grid;
@@ -2109,7 +2109,7 @@ header .header-col-R .hamburger:hover .bar3 {
     width: 400px;
 }
 .slectgame-slide .title-Page h1 {
-    color: #00ff84;
+    color: #fff;
     font-size: 2em;
     margin: 0;
     width: 100%;

@@ -13,8 +13,8 @@ class GameController extends Controller
 {
     public function index()
     {
-        // $games = (new Game())->getParentGames();
-        $games = Game::paginate(12);
+        $games = (new Game())->getParentGames()->take(16);
+        // $games = Game::paginate(16);
         return view('client/index', compact('games'));
     }
 

@@ -13,15 +13,24 @@
       background-size: cover !important;
       background-position: center !important;
   }
+
+  /*  media query */
+
+  /* Xuống mobile thì ẩn background */
+  @media (max-width: 768px) {
+	#bg-game-slot {
+	  background: none !important;
+	}
+  }
 </style>
 
 @section('body')
       <div class="bacarat-1-page bg-type1 w-full">
         @include('client.header')
 		<div class="mt-24 ">
-			<section id="bg-game-slot"> 
+			<section id="bg-game-slot" class="!w-full md:w-[90vw] md:h-[80vh]"> 
 				<div class="flex flex-col items-center">
-				  	<div class="flex items-center justify-between mb-4">
+				  	<div class="flex flex-wrap items-center justify-center md:justify-between mb-4">
   						<a href="/">
 							<img class="w-[150px] h-[58px]" src="{{asset('images/graphics/btn-back-game-slot.png')}}" alt="">
 						</a>
@@ -39,7 +48,7 @@
 						</div>
 					</div>
 
-					<div id="game-list" class="grid grid-cols-3 gap-5 overflow-y-auto max-h-[50vh]">
+					<div id="game-list" class="grid grid-cols-1 sm:grid-cols-3  gap-5 overflow-y-auto max-h-[50vh]">
 						@foreach($slots as $slot)
 							<a class="game-item" data-name="{{$slot->name}}" href="{{ route('detail-slot', [$slot->slug, $slot->id]) }}">
 							  <div class="slot_item">

@@ -380,7 +380,7 @@ body {
     bottom: -15px; */
     font-size: 44px;
     color: #1fe7fe;
-    margin-left: 18px;
+    /* margin-left: 18px; */
 }
 .count-down-image {
     right: 40px;
@@ -634,7 +634,7 @@ body {
         border-top-right-radius: 15px;
     }
     .slectslot_inner {
-        background-image: url(../images/KA_2.png);
+        /* background-image: url(../images/KA_2.png); */
         height: 80vh;
     }
     .title-Page .btn-back {
@@ -658,32 +658,33 @@ body {
         margin-bottom: 20px;
     }
     .header-col-L {
-        display: flex;
-        justify-content: center;
+        /* display: flex; */
+        /* justify-content: center; */
     }
     .header-col-R {
-        position: absolute;
-        top: 15px;
+        /* position: absolute; */
+        /* top: 15px; */
     }
     .header_wrapper {
         position: relative;
-        display: block !important;
+        /* display: block !important; */
     }
     .detail_game_inner1 {
         display: none;
     }
     .detail_game_inner2 {
-        background-image: url(../images/KA_2.png);
+        /* background-image: url(../images/KA_2.png); */
         height: 500px;
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: unset !important;
-        border: 1px solid #00ff84 !important;
+        border: 1px solid #fff !important;
+        border-radius: 8px !important;
         margin: 0 auto;
         display: block;
     }
     .avatar-game {
-        background-image: url(../images/Vector-Smart-Object.png);
+        /* background-image: url(../images/Vector-Smart-Object.png); */
         background-repeat: no-repeat;
         background-size: cover;
         width: 110px;
@@ -700,16 +701,16 @@ body {
     }
 
     .background {
-        background-image: url(../images/percent_background.png);
+        background-image: url(../images/background/bg-game-detail-progress-circle.png);
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         width: 100%;
         height: 100%;
         position: absolute; /* Đặt position absolute cho phần tử con */
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(0deg); /* Đặt nền ở trung tâm và bắt đầu xoay từ 0 độ */
-        animation: spin 2s linear infinite; /* Thêm animation xoay tròn */
+        /* animation: spin 2s linear infinite;  */
     }
 
     /* Định nghĩa keyframes cho animation xoay tròn */
@@ -744,9 +745,9 @@ body {
     /*    font-weight: 700;*/
     /*}*/
     .count-down-wrapper {
-        background-image: url(../images/Vector-Smart-Object_1.png);
+        /* background-image: url(../images/background/bg-round-frame-time.png); */
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         position: relative;
         width: 120px;
         height: 120px;

@@ -8,9 +8,9 @@
         </div>
         <div class="header-col-R">
 
-            <div class="header-group-btn flex items-center gap-2 relative"> 
-                <div id="user-name" class="flex items-center justify-center text-white">
-                    Vin
+            <div class="relative flex items-center gap-2 relative"> 
+                <div id="user-name" class="flex items-center justify-center text-white max-w-full truncate">
+                    
                 </div>
 
                 <div id="btn-dropdown" class="cursor-pointer">
@@ -60,7 +60,7 @@
             </script>
 
             <!-- <div class="header-mobile"> -->
-                <div class="header-group-btn lg:!hidden">
+                <div class="header-group-btn !hidden">
                     <div class="logo-mobile"><img src="{{ asset('images/graphics/logo-header.png') }}" alt=""></div>
                     {{-- <div class="heeader-btn_item" id="user-name"></div> --}}
                     <div class="heeader-btn_item">
@@ -81,7 +81,7 @@
                 </div>
             <!-- </div> -->
 
-            <div class="hamburger">
+            <div class="hamburger !hidden">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>

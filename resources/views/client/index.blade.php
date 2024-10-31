@@ -16,16 +16,17 @@
 
 <div class="bacarat-1-page bg-type1 w-full">
     @include('client.header')
-    <section class="w-full mt-28 px-[50px]">
-        <div class="grid grid-cols-6 gap-4">
+    <section class="w-full mt-10 px-2 md:px-[50px]">
+        <div class="flex flex-wrap justify-center max-h-[80vh] overflow-auto" >
             @foreach($games as $game)
-                <div data-id="{{ $game->id }}" class="detail-game" data-slug="{{ $game->slug }}">
-                    <img class="w-[100px] h-[160px] object-contain" src="{{ asset('images/'.$game->image_url) }}" alt="jili">
+            {{-- w-[calc(100%/5-16px)] sm:w-[calc(100%/6-16px)] --}}
+                <div data-id="{{ $game->id }}" class="detail-game h-[150px] h-[150px] md:w-[225px] sm:h-[180px] py-2" data-slug="{{ $game->slug }}">
+                    <img class="w-full h-full object-contain" src="{{ asset('images/'.$game->image_url) }}" alt="{{$game->slug}}">
                 </div>
             @endforeach
             
         </div>
-        <div class="flex justify-center mt-5">
+        {{-- <div class="flex justify-center">
             @if($games->onFirstPage())
                 <button class="flex items-center justify-center border-4 border-white size-[64px] mr-2 bg-gray-400 text-white rounded-full" disabled>
                     <img class="w-4 h-4" src="{{ asset('images/graphics/prev-icon.png') }}" alt="">
@@ -43,7 +44,7 @@
                     <img class="w-4 h-4" src="{{ asset('images/graphics/next-icon.png') }}" alt="">
                 </button>
             @endif
-        </div>
+        </div> --}}
         
     </section>
 </div>

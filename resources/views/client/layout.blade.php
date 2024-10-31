@@ -141,7 +141,7 @@
             </div>
             
             <div class="form-group">
-                <button id="btn-change-password" type="submit" class="bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cc py-2 !border-2 !border-white w-full !border-2 border-blue-500 !rounded-full text-white"> Đăng ký </button>
+                <button id="btn-change-password" type="submit" class="bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cc py-2 !border-2 !border-white w-full !border-2 border-blue-500 !rounded-full text-white"> Đổi mật khẩu </button>
             </div>
         </form>
     </div>
@@ -153,7 +153,7 @@
         <h1 class="mt-20 text-white font-bold text-xl text-center text-uppercase
         ">Mật khẩu của bạn được thay đổi thành công</h1>
     
-        <button type="button" style="background: linear-gradient(to right, #00ACE4, #4BE5E4);"  class="btn btn-model-cc py-2 !border-2 !border-white w-full text-white !rounded-full">
+        <button type="button" style="background: linear-gradient(to right, #00ACE4, #4BE5E4);"  class="close-btn btn btn-model-cc py-2 !border-2 !border-white w-full text-white !rounded-full">
             Xác nhận
         </button>
     </form>
