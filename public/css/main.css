@@ -1385,14 +1385,21 @@ header .header-col-R .hamburger:hover .bar3 {
         font-size: 24px;
     }
     .model-logout .model-logout_wrapper {
-        padding: 30px 35px 40px;
+        /* padding: 30px 35px 40px; */
+        padding: 0;
+        width: 350px;
+        height: 191px;
+    }
+    .model-logout .model-logout_wrapper .current-username,
+    .model-logout .model-logout_wrapper .current-coin {
+        font-size: 24px !important;
     }
     .model-logout .model-logout_wrapper .model-title h1 {
-        font-size: 40px;
+        font-size: 18px;
         margin-bottom: 10px;
     }
     .model-logout .model-logout_wrapper h3 {
-        font-size: 26px;
+        font-size: 16px;
     }
     .model-logout .model-logout_wrapper .group_btn {
         margin-top: 35px;

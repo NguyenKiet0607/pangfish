@@ -32,7 +32,7 @@
 </div>
 <div class="model-logout model-logout_active" style="display: none" id="coin-model">
     <div class="model-logout_overlay"></div>
-    <div class="model-logout_wrapper relative flex flex-col justify-around items-center">
+    <div class="model-logout_wrapper relative flex flex-col justify-center sm:justify-around items-center">
         
         <img  loading="lazy" class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">
@@ -68,7 +68,7 @@
 
 <div class="model-logout model-logout_active" style="display: none" id="help-model">
     <div class="model-logout_overlay"></div>
-    <div class="model-logout_wrapper relative flex flex-col justify-around items-center">
+    <div class="model-logout_wrapper relative flex flex-col justify-center sm:justify-around items-center">
 
         
         {{-- close --}}
@@ -96,12 +96,12 @@
 
 <div class="model-logout model-logout_active" style="display: none" id="user-model">
     <div class="model-logout_overlay"></div>
-    <div class="model-logout_wrapper relative flex flex-col justify-around items-center">
+    <div class="model-logout_wrapper relative flex flex-col justify-center sm:justify-around items-center">
         
         {{-- close --}}
         <img loading="lazy" class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 mt-2 sm:mt-0">
                 <img loading="lazy" width="100" height="100" src="{{asset('images/graphics/avatar.png')}}" alt="">
                 <div class="">
                     <h1 class="current-username text-left !text-yellow-300"></h1>
@@ -162,7 +162,7 @@
 
 <div class="model-logout model-logout_active" style="display: none" id="coin-alert-model">
     <div class="model-logout_overlay"></div>
-    <div style="background: url({{asset('images/background/bg-out-coin.png')}}); background-repeat: no-repeat;" class="model-logout_wrapper relative flex flex-col justify-around items-center">
+    <div style="background: url({{asset('images/background/bg-out-coin.png')}}); background-repeat: no-repeat;" class="model-logout_wrapper relative flex flex-col justify-center sm:justify-around items-center">
         
         <img class="close-btn absolute top-[1px] right-[-5px] cursor-pointer" width="93" height="93" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">
