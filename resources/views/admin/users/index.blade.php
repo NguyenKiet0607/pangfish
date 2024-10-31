@@ -31,23 +31,87 @@
         <div class="card-body">
             <form method="GET" id="form-admin-search" action="{{ route('users.index') }}">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group row">
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" value="{{ $request->name }}" id="name" name="name" placeholder="{{ __('layouts.users.placeholder_search') }}">
-                            </div>
+                    {{-- Inputs --}}
+                    <div class="col-6">
+                        <div>
+                            <input type="text" class="form-control" value="{{ $request->name }}" id="name" name="name" placeholder="{{ __('layouts.users.placeholder_search') }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
+
+                    {{-- Buttons --}}
+                    <div class="col-6">
                         <div class="form-group row">
-                            <div class="col-sm-8">
+                            <div style="width: 100%" class="d-flex align-items-center justify-content-between">
                                 <button class="btn btn-default btn-search"><i class="fa fa-search"></i> {{ __('layouts.btn_search') }}</button>
                                 <a class="btn btn-primary" href="{{ route('users.create') }}"><i class="fa fa-plus"></i> {{ __('layouts.btn_create') }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="row mt-5">
+                    {{-- Inputs --}}
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="startDate" class="form-label">Ngày đăng ký:</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="date" class="form-control" id="startDate" placeholder="dd/mm/yyyy">
+                            </div>
+                            <div class="col-4">
+                                <input type="date" class="form-control" id="endDate" placeholder="dd/mm/yyyy">
+                            </div>            
+                        </div>
+                    </div>
+
+                    {{-- Buttons --}}
+                    <div class="col-6">
+                        <div class="form-group row">
+                            <div>
+                                <button style="min-width: 110px;" class="btn btn-default btn-search">
+                                    Xóa bộ lọc
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    {{-- Inputs --}}
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="startDate" class="form-label">Id bắt đầu:</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="startId" placeholder="ID bắt đầu">
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="endId" placeholder="ID kết thúc">
+                            </div>            
+                        </div>
+                    </div>
+
+                    {{-- Buttons --}}
+                    <div class="col-6" style="padding: 0">
+                        <div style="width: 100%" class="d-flex align-items-center justify-content-between">
+                            <button style="min-width: 110px;" class="btn btn-default btn-search">
+                                Tải excel
+                            </button>
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control" placeholder="Nhập số trang">
+
+                                <button style="min-width: 110px; margin-left: 5px;" class="btn btn-primary btn-search">
+                                    Đi đến trang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
+
+            
         </div>
     </div>
     <div class="row">

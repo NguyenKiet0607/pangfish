@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ConfigController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Mews\Captcha\Facades\Captcha;
 use App\Http\Controllers\User\AuthController;

@@ -302,21 +302,21 @@ return [
             'url'  => '/admin/users',
             'icon' => 'fas fa-fw fa-user',
             'active' => ['users', 'users*'],
-           'role' => ['1', '2'] //superadmin
+            'role' => ['1', '2'] //superadmin
         ],
         [
             'text' => 'Codes',
             'url'  => '/admin/codes',
             'icon' => 'fas fa-fw fa-code',
             'active' => ['codes', 'codes*'],
-           'role' => ['1', '2'] //admin
+            'role' => ['1', '2'] //admin
         ],
         [
             'text' => 'Games',
             'url'  => '/admin/games',
             'icon' => 'fas fa-fw fa-gamepad',
             'active' => ['games', 'games*'],
-           'role' => ['3'] //develop
+            'role' => ['3'] //develop
         ],
         [
             'text' => 'Cấu hình',
@@ -324,7 +324,7 @@ return [
             'icon' => 'fas fa-user-secret',
             'active' => ['admins', 'admins*'],
             'role' => ['1'] //superadmin
-        ]
+        ],
     ],
 
     /*

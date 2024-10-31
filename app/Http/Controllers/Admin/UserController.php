@@ -42,14 +42,14 @@ class UserController extends Controller
             $user->fill($input);
             $user->password = bcrypt($input['password']);
             $user->tenant_code = env('TENANT_CODE_DEFAULT', '001');
-            if(auth('admin')->user()->role == 2){
+            if (auth('admin')->user()->role == 2) {
                 $user->tenant_code = auth('admin')->user()->tenant_code;
             }
             $user->save(); // save to db
             return redirect()->to(route('users.index'))
                 ->with('success', __('messages.users.created_success'));
-        } catch (\Exception $exception){
-            Log::error('Create user error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Create user error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', 'Create error');
@@ -83,14 +83,14 @@ class UserController extends Controller
             $user->fill($input);
             if (isset($input['password']) && $input['password'] != '') {
                 $user->password = bcrypt($input['password']);
-            }else{
+            } else {
                 unset($user->password);
             }
             $user->save(); // save to db
             return redirect()->to(route('users.index'))
                 ->with('success', __('messages.users.updated_success'));
-        } catch (\Exception $exception){
-            Log::error('Update user error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Update user error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', __('messages.update_error'));
@@ -106,8 +106,8 @@ class UserController extends Controller
             $user->delete();
             return redirect()->to(route('users.index'))
                 ->with('success', __('messages.users.message_delete_success'));
-        } catch (\Exception $exception){
-            Log::error('Delete user error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Delete user error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', __('messages.delete_error'));
@@ -121,19 +121,21 @@ class UserController extends Controller
      */
     public function datatables($request)
     {
-        $userQuery = User::getAll($request,
+        $userQuery = User::getAll(
+            $request,
             ['*'],
-            true);
+            true
+        );
         return (new Datatables())->eloquent($userQuery)
             ->editColumn('status', function ($item) {
                 return $item->status ? '<i class="text-success fa fa-circle"></i>'
                     : '<i class="text-danger fa fa-circle"></i>';
             })
             ->editColumn('phone', function ($item) {
-                return (auth('admin')->user()->role == 2 ) ? null: $item->phone;
+                return (auth('admin')->user()->role == 2) ? null : $item->phone;
             })
             ->addColumn('action', function ($item) {
-                return '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="'.$item->id.'" data-model="user"><i class="fa fa-credit-card">'.__('layouts.users.add_coin').'</i></div>'.
+                return '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="' . $item->id . '" data-model="user"><i class="fa fa-credit-card">' . __('layouts.users.add_coin') . '</i></div>' .
                     '<a class="btn btn-success btn-xs" href="' . route('users.edit', $item->id) . '">
                          <i class="fa fa-edit"></i> ' . __('layouts.btn_edit') . '</a>';
             })

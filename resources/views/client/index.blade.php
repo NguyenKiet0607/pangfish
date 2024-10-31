@@ -20,12 +20,9 @@
         <div class="grid grid-cols-6 gap-4">
             @foreach($games as $game)
                 <div data-id="{{ $game->id }}" class="detail-game" data-slug="{{ $game->slug }}">
-                    <img class="w-[100px] h-[160px] object-contain" src="{{ asset('images/games/'.$game->image_url) }}" alt="jili">
+                    <img class="w-[100px] h-[160px] object-contain" src="{{ asset('images/'.$game->image_url) }}" alt="jili">
                 </div>
             @endforeach
-            {{-- <div class="bg-blue-200 p-4 rounded">
-
-            </div> --}}
             
         </div>
         <div class="flex justify-center mt-5">

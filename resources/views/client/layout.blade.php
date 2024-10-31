@@ -34,15 +34,14 @@
     <div class="model-logout_overlay"></div>
     <div class="model-logout_wrapper relative flex flex-col justify-around items-center">
         
-        {{-- close --}}
-        <img class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
+        <img  loading="lazy" class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">
             <h1>Bạn muốn nạp xu?</h1>
             <h1>Vui lòng liên hệ với Admin</h1>
         </div>
         <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help">
             <div class="border-2 border-white rounded-full size-[35px]">
-                <img  width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
+                <img loading="lazy" width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
             </div>
            
             <span class="text-blue-800 font-bold text-lg">
@@ -50,20 +49,6 @@
             </span>
         </button>
     </div>
-    {{-- <div class="model-logout_wrapper">
-        <div class="model-title">
-            <h1>Nạp Coin</h1>
-        </div>
-        <form id="coinform">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Mã nạp coin" name="code" autocomplete="off" required="">
-            </div>
-            <div class="form-group form-group_btn">
-                <div class="btn btn-model-cc">Huỷ</div>
-                <button type="submit" class="btn btn-model-cf"> Nạp </button>
-            </div>
-        </form>
-    </div> --}}
 </div>
 <div class="model-logout model-logout_active" style="display: none" id="logout1-model">
     <div class="model-logout_overlay"></div>
@@ -87,7 +72,7 @@
 
         
         {{-- close --}}
-        <img class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
+        <img loading="lazy" class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
 
 
         <div class="model-title">
@@ -99,7 +84,7 @@
         </h3>
         <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help">
             <div class="border-2 border-white rounded-full size-[35px]">
-                <img  width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
+                <img loading="lazy" width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
             </div>
            
             <span class="text-blue-800 font-bold text-lg">
@@ -114,10 +99,10 @@
     <div class="model-logout_wrapper relative flex flex-col justify-around items-center">
         
         {{-- close --}}
-        <img class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
+        <img loading="lazy" class="close-btn absolute top-[17px] right-[0px] cursor-pointer" width="80" height="80" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">
             <div class="flex items-center gap-3">
-                <img width="100" height="100" src="{{asset('images/graphics/avatar.png')}}" alt="">
+                <img loading="lazy" width="100" height="100" src="{{asset('images/graphics/avatar.png')}}" alt="">
                 <div class="">
                     <h1 class="current-username text-left !text-yellow-300"></h1>
                     <h1 class="current-coin text-left !text-yellow-300"></h1>
@@ -133,7 +118,6 @@
     </div>
 </div>
 
-{{-- Change password --}}
 <div class="model-logout model-logout_active" style="display: none" id="change-password-model">
     <div class="model-logout_overlay"></div>
     <div class="relative flex flex-col justify-around items-center">
@@ -162,7 +146,7 @@
         </form>
     </div>
 </div>
-{{-- Change password alert --}}
+
 <div class="model-logout model-logout_active" id="change-password-success-model" style="display: none">
     <div class="model-logout_overlay"></div>
     <form id="changePasswordSuccessForm" action="" class="flex flex-col justify-between w-[430px] h-[288px] z-40 rounded-3xl p-5">
@@ -176,12 +160,10 @@
     
 </div>
 
-{{-- Hết xu --}}
 <div class="model-logout model-logout_active" style="display: none" id="coin-alert-model">
     <div class="model-logout_overlay"></div>
     <div style="background: url({{asset('images/background/bg-out-coin.png')}}); background-repeat: no-repeat;" class="model-logout_wrapper relative flex flex-col justify-around items-center">
         
-        {{-- close --}}
         <img class="close-btn absolute top-[1px] right-[-5px] cursor-pointer" width="93" height="93" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">
             <div class="flex items-center gap-3">
