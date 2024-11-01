@@ -19,15 +19,21 @@ $(document).ready(function () {
             },
             error: function (e) {
                 if (e.status === 422) {
-                    $("#help-model h3").text(
+                    // $("#help-model h3").text(
+                    //     "Tài khoản hoặc mật khẩu không chính xác."
+                    // );
+                    $(".error-message").text(
                         "Tài khoản hoặc mật khẩu không chính xác."
                     );
                 } else {
-                    $("#help-model h3").text(
+                    $(".error-message").text(
                         "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."
                     );
+                    // $("#help-model h3").text(
+                    //     "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."
+                    // );
                 }
-                $("#help-model").show();
+                // $("#help-model").show();
             },
         });
     });
@@ -57,18 +63,50 @@ $(document).ready(function () {
                 $("#enterUsernameForm").removeClass("hidden");
             },
             error: function (e, data) {
-                if (e.status === 422) {
-                    $.each(e.responseJSON.errors, function (key, value) {
-                        $("#help-model h3").append(
-                            "<div>" + value[0] + "</div>"
-                        );
-                    });
+                console.log("e.responseJSON.errors: ", e.responseJSON.errors);
+
+                const passwordFieldErrors = e.responseJSON.errors["password"];
+                const usernameFieldErrors = e.responseJSON.errors["username"];
+                const phoneFieldErrors = e.responseJSON.errors["phone"];
+                const register_code = e.responseJSON.errors["register_code"];
+
+                // Render ra id của error từng field
+                if (passwordFieldErrors) {
+                    $(".password-error").text(passwordFieldErrors[0]);
                 } else {
-                    $("#help-model h3").text(
-                        "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."
-                    );
+                    $(".password-error").text("");
                 }
-                $("#help-model").show();
+
+                if (usernameFieldErrors) {
+                    $(".username-error").text(usernameFieldErrors[0]);
+                } else {
+                    $(".username-error").text("");
+                }
+
+                if (phoneFieldErrors) {
+                    $(".phone-error").text(phoneFieldErrors[0]);
+                } else {
+                    $(".phone-error").text("");
+                }
+
+                if (register_code) {
+                    $(".register-code-error").text(register_code[0]);
+                } else {
+                    $(".register-code-error").text("");
+                }
+
+                // if (e.status === 422) {
+                //     $.each(e.responseJSON.errors, function (key, value) {
+                //         $("#help-model h3").append(
+                //             "<div>" + value[0] + "</div>"
+                //         );
+                //     });
+                // } else {
+                //     $("#help-model h3").text(
+                //         "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."
+                //     );
+                // }
+                // $("#help-model").show();
                 //$("#captcha").text(Math.floor(1000 + Math.random() * 9000));
                 fetch("/refresh-captcha")
                     .then((response) => response.text())

@@ -13,19 +13,24 @@
         <form id="registerform" action="" class="register-form-screen z-40 px-5">
             <div class="form-group !mt-20">
                 <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Tên tài khoản" name="username" autocomplete="off" required="">
+                <p class="username-error error-message text-red-500"></p>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Số điện thoại" name="phone" autocomplete="off" required="">
+                <p class="phone-error error-message text-red-500"></p>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Mật khẩu" name="password" autocomplete="off" required="">
+                <p class="password-error error-message text-red-500"></p>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Xác nhận mật khẩu" name="password_confirmation" autocomplete="off" required="">
+                <p class="password_confirmation-error error-message text-red-500"></p> 
             </div>
             <div class="row mb-4">
                 <div class="col-md-6 col-6 pr-0">
                     <input type="text" class="form-control !h-[40px] text-center !text-blue-500 placeholder:text-[#01c0fa] rounded-full placeholder:font-bold" name="register_code" placeholder="CAPCHA">
+                    <p class="register-code-error error-message text-red-500"></p>
                 </div>
                 <div class="col-md-6 col-6">
                     <div class="flex items-center gap-2">

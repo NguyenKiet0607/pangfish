@@ -16,16 +16,9 @@
             <div class="form-group">
                 <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Mật khẩu" name="password" autocomplete="off" required="">
             </div>
-            {{-- <div class="form-check text-center">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Ghi nhớ đăng nhập
-                </label>
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            </div> --}}
-            {{-- <div class="form-group form-group_btn">
-                <div class="btn btn-model-cf">Huỷ thao tác</div>
-                <button type="submit" class="btn btn-model-cc"> Đăng nhập </button>
-            </div> --}}
+
+            <p class="my-1 error-message text-red-500"></p>
+            
             <div class="form-group">
                 <button type="submit" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng nhập </button>
             </div>
