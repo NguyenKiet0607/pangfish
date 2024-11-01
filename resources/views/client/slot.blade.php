@@ -65,7 +65,7 @@
 								<div class="animation-bar-1">
 									<span class="w-[70%] h-[12px]"></span>
 
-									<div class="bg-white w-[30%] h-[12px]">
+									<div class="bg-white rounded-full w-[30%] h-[12px]">
 
 									</div>
 

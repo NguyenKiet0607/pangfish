@@ -1230,7 +1230,7 @@ header .header-col-R .hamburger:hover .bar3 {
     background-repeat: no-repeat;
     background-size: contain;
     /* border: 3px solid #ffffff; */
-    border-radius: 50px;
+    /* border-radius: 50px; */
     /* box-shadow: inset 0 0 10px 0 #22d94f, 0 0 10px 0 #22d94f; */
     width: 587px;
     height: 300px;

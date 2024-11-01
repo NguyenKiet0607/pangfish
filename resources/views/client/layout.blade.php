@@ -162,7 +162,7 @@
 
 <div class="model-logout model-logout_active" style="display: none" id="coin-alert-model">
     <div class="model-logout_overlay"></div>
-    <div style="background: url({{asset('images/background/bg-out-coin.png')}}); background-repeat: no-repeat;" class="model-logout_wrapper relative flex flex-col justify-center sm:justify-around items-center">
+    <div style="background: url({{asset('images/background/bg-out-coin.png')}}); background-repeat: no-repeat; background-size: contain;" class="model-logout_wrapper relative flex flex-col justify-center sm:justify-around items-center">
         
         <img class="close-btn absolute top-[1px] right-[-5px] cursor-pointer" width="93" height="93" src="{{asset('images/graphics/close-btn.png')}}" alt="">
         <div class="model-title">

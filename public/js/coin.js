@@ -120,8 +120,14 @@ $(document).ready(function () {
             success: function (data) {
                 userId = data.result.id;
                 coin = data.result.coin;
+                let username = data.result.username;
+
+                // Truncate username if it has more than 10 characters
+                if (username.length > 10) {
+                    username = username.substring(0, 10) + "...";
+                }
                 $("#coin").text(data.result.coin);
-                $("#user-name").text(data.result.username);
+                $("#user-name").text(username);
 
                 $(".current-username").text(data.result.username);
                 $(".current-coin").text("$" + data.result.coin);
