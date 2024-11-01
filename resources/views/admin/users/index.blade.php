@@ -57,11 +57,11 @@
                                 <label for="startDate" class="form-label">Ngày đăng ký:</label>
                             </div>
                             <div class="col-4">
-                                <input type="date" class="form-control" id="startDate" placeholder="dd/mm/yyyy">
+                                <input type="date" class="form-control" id="startDate" name="start_date" value="{{ $request->start_date }}" placeholder="dd/mm/yyyy">
                             </div>
                             <div class="col-4">
-                                <input type="date" class="form-control" id="endDate" placeholder="dd/mm/yyyy">
-                            </div>            
+                                <input type="date" class="form-control" id="endDate" name="end_date" value="{{ $request->end_date }}" placeholder="dd/mm/yyyy">
+                            </div>           
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@
                     <div class="col-6">
                         <div class="form-group row">
                             <div>
-                                <button style="min-width: 110px;" class="btn btn-default btn-search">
+                                <button style="min-width: 110px;" class="btn-clear-filter btn btn-default btn-search">
                                     Xóa bộ lọc
                                 </button>
                             </div>
@@ -85,10 +85,10 @@
                                 <label for="startDate" class="form-label">Id bắt đầu:</label>
                             </div>
                             <div class="col-4">
-                                <input type="text" class="form-control" id="startId" placeholder="ID bắt đầu">
+                                <input type="number" class="form-control" id="startId" name="start_id" value="{{ $request->start_id }}" placeholder="ID bắt đầu">
                             </div>
                             <div class="col-4">
-                                <input type="text" class="form-control" id="endId" placeholder="ID kết thúc">
+                                <input type="number" class="form-control" id="endId" name="end_id" value="{{ $request->end_id }}" placeholder="ID kết thúc">
                             </div>            
                         </div>
                     </div>
@@ -107,6 +107,17 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <button style="min-width: 110px; width: 100%;" class="btn btn-primary">
+                            Lọc
+                        </button>
+                    </div>
+                    <div class="col-6">
+
                     </div>
                 </div>
             </form>
@@ -151,37 +162,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <script>
-
         const exportExcelBtn = document.getElementById('export-excel-btn');
-
+    
         exportExcelBtn.addEventListener('click', () => {
-            exportTableToExcel('datatable', 'users');
-        });
+            // Lấy các giá trị từ input
+            const startId = document.getElementById('startId').value;
+            const endId = document.getElementById('endId').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+    
+            // Format ngày hiện tại
+            const today = new Date();
+            const currentDate = formatDate(today);
+    
+            // Tạo mảng các phần tử của tên file
+            let fileNameParts = ['user'];
+    
+            // Thêm phần ID nếu có
+            if (startId) {
+                fileNameParts.push(startId);
+               
+            }
 
+            if (endId) {
+                fileNameParts.push(endId);
+            }
+    
+            // Thêm phần ngày nếu có
+            if (startDate ) {
+                fileNameParts.push(formatDate(new Date(startDate)));
+            }
+            
+            if (endDate) {
+
+                fileNameParts.push(formatDate(new Date(endDate)));
+            }
+    
+            // Luôn thêm ngày hiện tại
+            fileNameParts.push(currentDate);
+    
+            // Nối các phần tử lại với nhau bằng dấu _
+            const fileName = fileNameParts.join('_');
+    
+            exportTableToExcel('datatable', fileName);
+        });
+    
+        // Hàm format ngày sang dạng ddMMyyyy
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}${month}${year}`;
+        }
+    
         function exportTableToExcel(tableID, filename = '') {
             // Get the HTML table element
             const table = document.getElementById(tableID);
             const rows = Array.from(table.rows);
-
+    
             // Prepare data array excluding the last two columns of each row
             const data = rows.map(row => 
                 Array.from(row.cells).slice(0, -2).map(cell => cell.innerText)
             );
-
+    
             // Convert data array to worksheet
             const worksheet = XLSX.utils.aoa_to_sheet(data);
-
+    
             // Create a new workbook and append the worksheet
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-            // Set default filename if none provided
-            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
-
+    
+            // Thêm .xlsx vào tên file
+            filename = filename + '.xlsx';
+    
             // Write file and trigger download
             XLSX.writeFile(workbook, filename);
         }
-
     </script>
 @endsection
-

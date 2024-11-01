@@ -76,12 +76,26 @@ class User extends Authenticatable implements JWTSubject
                 ->orWhere('name', '=', $condition['name']);
         }
 
+
         //admin chi tim duoc theo ten, khong list duoc
-        if (Auth::guard('admin')->user()->role == 2 && empty($condition['name'])){
+        if (Auth::guard('admin')->user()->role == 2 && empty($condition['name'])) {
             $query->where('username', '=', '');
         }
 
-        if($returnQuery) {
+        // Thêm filter theo khoảng ngày
+        if (!empty($condition['start_date']) && !empty($condition['end_date'])) {
+            $query->whereBetween('created_at', [
+                $condition['start_date'] . ' 00:00:00',
+                $condition['end_date'] . ' 23:59:59'
+            ]);
+        }
+
+        // Thêm filter theo khoảng ID
+        if (!empty($condition['start_id']) && !empty($condition['end_id'])) {
+            $query->whereBetween('id', [$condition['start_id'], $condition['end_id']]);
+        }
+
+        if ($returnQuery) {
             return $query;
         }
         return $query->all();

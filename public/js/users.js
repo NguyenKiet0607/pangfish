@@ -54,15 +54,45 @@ window.addEventListener("load", function () {
         pageLength: len,
     });
 
-    $("#datatable").on("length.dt", function (e, settings, len) {
-        sessionStorage.setItem("adminTable_length", len);
+    // $("#datatable").on("length.dt", function (e, settings, len) {
+    //     sessionStorage.setItem("adminTable_length", len);
+    // });
+
+    // if ($("div").hasClass("alert")) {
+    //     setTimeout(function () {
+    //         $("div.alert").css("display", "none");
+    //     }, 5000);
+    // }
+
+    $(".btn-clear-filter").click(function (e) {
+        e.preventDefault();
+        $("#startDate").val("");
+        $("#endDate").val("");
+        $("#startId").val("");
+        $("#endId").val("");
+        $("#name").val("");
+        $("#form-admin-search").submit();
     });
 
-    if ($("div").hasClass("alert")) {
-        setTimeout(function () {
-            $("div.alert").css("display", "none");
-        }, 5000);
-    }
+    // Validate date range và ID range trước khi submit
+    $("#form-admin-search").submit(function (e) {
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+        var startId = $("#startId").val();
+        var endId = $("#endId").val();
+
+        if (startDate && endDate && startDate > endDate) {
+            alert("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc");
+            e.preventDefault();
+            return false;
+        }
+
+        if (startId && endId && parseInt(startId) > parseInt(endId)) {
+            alert("ID bắt đầu phải nhỏ hơn hoặc bằng ID kết thúc");
+            e.preventDefault();
+            return false;
+        }
+    });
 });
 
 //Open modal add credit when click class credit
