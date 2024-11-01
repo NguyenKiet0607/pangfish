@@ -96,7 +96,7 @@
                     {{-- Buttons --}}
                     <div class="col-6" style="padding: 0">
                         <div style="width: 100%" class="d-flex align-items-center justify-content-between">
-                            <button style="min-width: 110px;" class="btn btn-default btn-search">
+                            <button id="export-excel-btn" type="button" style="min-width: 110px;" class="btn btn-default btn-search">
                                 Tải excel
                             </button>
                             <div class="d-flex align-items-center">
@@ -147,5 +147,41 @@
 
 @section('js')
     <script src="{{ asset('js/users.js').'?v='.env('VERSION', '1.0.0') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+
+        const exportExcelBtn = document.getElementById('export-excel-btn');
+
+        exportExcelBtn.addEventListener('click', () => {
+            exportTableToExcel('datatable', 'users');
+        });
+
+        function exportTableToExcel(tableID, filename = '') {
+            // Get the HTML table element
+            const table = document.getElementById(tableID);
+            const rows = Array.from(table.rows);
+
+            // Prepare data array excluding the last two columns of each row
+            const data = rows.map(row => 
+                Array.from(row.cells).slice(0, -2).map(cell => cell.innerText)
+            );
+
+            // Convert data array to worksheet
+            const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Create a new workbook and append the worksheet
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+            // Set default filename if none provided
+            filename = filename ? filename + '.xlsx' : 'excel_data.xlsx';
+
+            // Write file and trigger download
+            XLSX.writeFile(workbook, filename);
+        }
+
+    </script>
 @endsection
 
