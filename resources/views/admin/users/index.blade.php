@@ -100,9 +100,9 @@
                                 Tải excel
                             </button>
                             <div class="d-flex align-items-center">
-                                <input type="text" class="form-control" placeholder="Nhập số trang">
+                                <input id="goto-page-input" type="text" class="form-control" placeholder="Nhập số trang">
 
-                                <button style="min-width: 110px; margin-left: 5px;" class="btn btn-primary btn-search">
+                                <button type="button" id="goto-page-btn" style="min-width: 110px; margin-left: 5px;" class="btn btn-primary btn-search">
                                     Đi đến trang
                                 </button>
                             </div>

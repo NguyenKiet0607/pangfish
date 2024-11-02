@@ -93,6 +93,30 @@ window.addEventListener("load", function () {
             return false;
         }
     });
+
+    $("#goto-page-btn").click(function (e) {
+        e.preventDefault();
+        const pageInput = $("#goto-page-input").val();
+        const pageNumber = parseInt(pageInput);
+
+        // Kiểm tra input
+        if (!pageNumber || isNaN(pageNumber)) {
+            alert("Vui lòng nhập số trang hợp lệ");
+            return;
+        }
+
+        const info = table.page.info();
+        const maxPage = info.pages;
+
+        // Kiểm tra số trang có hợp lệ không
+        if (pageNumber < 1 || pageNumber > maxPage) {
+            alert(`Vui lòng nhập số trang từ 1 đến ${maxPage}`);
+            return;
+        }
+
+        // Chuyển đến trang được chọn (trừ 1 vì DataTables đếm từ 0)
+        table.page(pageNumber - 1).draw(false);
+    });
 });
 
 //Open modal add credit when click class credit
