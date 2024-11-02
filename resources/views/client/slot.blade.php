@@ -48,7 +48,7 @@
 						</div>
 					</div>
 
-					<div id="game-list" class="grid grid-cols-1 sm:grid-cols-3  gap-5 overflow-y-auto max-h-[50vh]">
+					<div id="game-list" class="grid grid-cols-1 sm:grid-cols-3  gap-5 overflow-y-auto md:overflow-y-visible max-h-[50vh]">
 						@foreach($slots as $slot)
 							<a class="game-item" data-name="{{$slot->name}}" href="{{ route('detail-slot', [$slot->slug, $slot->id]) }}">
 							  <div class="slot_item">
