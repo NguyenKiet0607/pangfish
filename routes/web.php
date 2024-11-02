@@ -60,7 +60,7 @@ Route::middleware('admin.login')->group(function () {
     Route::post('/admin/config', [ConfigController::class, 'update'])->name('config.update')->middleware('admin.super');
     Route::resource('/admin/users', 'App\Http\Controllers\Admin\UserController')->middleware('admin.admin');
     Route::resource('/admin/codes', 'App\Http\Controllers\Admin\CodeController')->middleware('admin.admin');
-    Route::resource('/admin/games', 'App\Http\Controllers\Admin\GameController')->middleware('admin.develop');
+    Route::resource('/admin/games', 'App\Http\Controllers\Admin\GameController')->middleware('admin.super');
     //add credit
     Route::post('/admin/credit/add', 'App\Http\Controllers\Admin\CreditController@add')->name('admin.credit.add');
 });

@@ -248,7 +248,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     z-index: 1; /* Ensure the background image stays behind the text */
-    /* animation: spin 2s linear infinite; */
+    animation: spin 2s linear infinite;
 }
 
 @keyframes spin {

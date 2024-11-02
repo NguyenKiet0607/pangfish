@@ -312,18 +312,18 @@ return [
             'role' => ['1', '2'] //admin
         ],
         [
-            'text' => 'Games',
-            'url'  => '/admin/games',
-            'icon' => 'fas fa-fw fa-gamepad',
-            'active' => ['games', 'games*'],
-            'role' => ['3'] //develop
-        ],
-        [
             'text' => 'Cấu hình',
             'url'  => '/admin/config',
             'icon' => 'fas fa-user-secret',
             'active' => ['admins', 'admins*'],
             'role' => ['1'] //superadmin
+        ],
+        [
+            'text' => 'Games',
+            'url'  => '/admin/games',
+            'icon' => 'fas fa-fw fa-gamepad',
+            'active' => ['games', 'games*'],
+            'role' => ['1', '3'] //develop
         ],
     ],
 

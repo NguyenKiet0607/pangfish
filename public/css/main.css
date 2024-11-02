@@ -5021,7 +5021,22 @@ header .header-col-R .hamburger:hover .bar3 {
     animation: scroll-left 12s linear infinite;
     padding-left: 100%;
 }
+.scrolling-text-game-parent {
+    display: inline-block;
+    padding-left: 100%; /* Start outside the left edge */
+    white-space: nowrap;
+    animation: scroll-left-game-parent 12s linear infinite;
+    padding-left: 100%;
+}
 
+@keyframes scroll-left-game-parent {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
 @keyframes scroll-left {
     0% {
         transform: translateX(0%);

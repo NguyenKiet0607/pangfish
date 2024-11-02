@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setInterval(function() {
+$(document).ready(function () {
+    setInterval(function () {
         countDown(distance);
         distance -= 1000; // decrease the distance by 1000 milliseconds (1 second) each time
     }, 1000);
@@ -10,62 +10,82 @@ $(document).ready(function() {
     setInterval(decreaseCoin, 2000);
 
     //Get percentage of slot
-    setInterval(function() {
+    setInterval(function () {
         $.ajax({
-            url: '/api/game/detail/'+slug,
-            method: 'GET',
-            success: function(data) {
-                $('.percentage').text(data.result.percent+'%');
-                if(data.result.round && data.result.round_count) {
-                    $('#text-line1').text(data.result.round);
-                    $('#text-line2').text('Số vòng quay: ' + data.result.round_count);
+            url: "/api/game/detail/" + slug,
+            method: "GET",
+            success: function (data) {
+                console.log("data: ", data);
+                $(".percentage").text(data.result.percent + "%");
+                if (data.result.round && data.result.round_count) {
+                    $("#text-line1").text(data.result.round);
+                    $("#text-line2").text(
+                        "Số vòng quay: " + data.result.round_count
+                    );
                 }
-            }
-        })
+
+                // Get round_start and round_end
+                if (data.result.round_start && data.result.round_end) {
+                    $("#round-time").text(
+                        data.result.round_start + " - " + data.result.round_end
+                    );
+                } else {
+                    $("#round-time").text("00:00:00 - 00:00:00");
+                }
+            },
+        });
     }, 10000);
 
-    $('.round').click(function() {
+    $(".round").click(function () {
         $.ajax({
-            url: '/api/game/round/'+slug,
-            method: 'GET',
-            success: function(data) {
-                $('#round-modal h3').text(data.round);
-                $('#round-modal .round_count').text('Số vòng quay: '+data.count);
-                $('#text-line1').text(data.round);
-                $('#text-line2').text('Số vòng quay: '+data.count);
-                $('#text-line1-mobile').text(data.round);
-                $('#text-line2-mobile').text('Số vòng quay: '+data.count);
-            }
-        })
-        $('#round-modal').show();
+            url: "/api/game/round/" + slug,
+            method: "GET",
+            success: function (data) {
+                console.log("data: ", data);
+                $("#round-modal h3").text(data.round);
+                $("#round-modal .round_count").text(
+                    "Số vòng quay: " + data.count
+                );
+                $("#text-line1").text(data.round);
+                $("#text-line2").text("Số vòng quay: " + data.count);
+                $("#text-line1-mobile").text(data.round);
+                $("#text-line2-mobile").text("Số vòng quay: " + data.count);
+
+                if (data.round) {
+                    $("#round-time").text(data.round);
+                } else {
+                    $("#round-time").text("00:00:00 - 00:00:00");
+                }
+            },
+        });
+        $("#round-modal").show();
     });
 
-    $('#round-modal .btn-model-cc').click(function(e) {
-        $('#round-modal').hide();
-        $('#text-line1').show();
-        $('#text-line2').show();
-        $('#text-line1-mobile').show();
-        $('#text-line2-mobile').show();
-        $('.round').hide();
-
+    $("#round-modal .btn-model-cc").click(function (e) {
+        $("#round-modal").hide();
+        $("#text-line1").show();
+        $("#text-line2").show();
+        $("#text-line1-mobile").show();
+        $("#text-line2-mobile").show();
+        $(".round").hide();
     });
 });
 
 function decreaseCoin() {
     // var coinValue = parseInt($('#coin').text()); // Lấy giá trị hiện tại của #coin và chuyển sang số nguyên
-    if (coin <= 0 && expired_time <=0 ) {
+    if (coin <= 0 && expired_time <= 0) {
         window.location.href = "/";
     }
 
     $.ajax({
-        url: '/api/user/decrease-coin',
-        method: 'POST',
-        success: function(data) {
-            $('#coin').text(data.coin);
+        url: "/api/user/decrease-coin",
+        method: "POST",
+        success: function (data) {
+            $("#coin").text(data.coin);
             coin = data.coin;
             expired_time = data.expired_time;
-            distance = expired_time*1000;
-        }
+            distance = expired_time * 1000;
+        },
     });
 }
 
@@ -87,8 +107,8 @@ function getRandomTime() {
     const endTime = new Date(startTime.getTime() + endOffset * 60000);
 
     const formatTime = (date) => {
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
         return `${hours}:${minutes}`;
     };
 
@@ -98,15 +118,14 @@ function getRandomTime() {
     return `${startStr} - ${endStr}`;
 }
 
-function countDown(distance)
-{
-    var minutes = '00';
-    var seconds = '00';
-    if(distance > 0){
-        minutes = Math.floor((distance / (1000 * 60)));
+function countDown(distance) {
+    var minutes = "00";
+    var seconds = "00";
+    if (distance > 0) {
+        minutes = Math.floor(distance / (1000 * 60));
         seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        minutes = minutes >= 10 ? minutes : '0'+minutes;
-        seconds = seconds >= 10 ? seconds : '0'+seconds;
+        minutes = minutes >= 10 ? minutes : "0" + minutes;
+        seconds = seconds >= 10 ? seconds : "0" + seconds;
     }
-    $('.count-down-time').text(minutes+':'+seconds);
+    $(".count-down-time").text(minutes + ":" + seconds);
 }

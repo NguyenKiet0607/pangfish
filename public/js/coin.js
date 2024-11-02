@@ -120,16 +120,16 @@ $(document).ready(function () {
             success: function (data) {
                 userId = data.result.id;
                 coin = data.result.coin;
-                let username = data.result.username;
+                let name = data.result.name;
 
-                // Truncate username if it has more than 10 characters
-                if (username.length > 10) {
-                    username = username.substring(0, 10) + "...";
+                // Truncate name if it has more than 10 characters
+                if (name.length > 10) {
+                    name = name.substring(0, 10) + "...";
                 }
                 $("#coin").text(data.result.coin);
-                $("#user-name").text(username);
+                $("#user-name").text(name);
 
-                $(".current-username").text(data.result.username);
+                $(".current-username").text(data.result.name);
                 $(".current-coin").text("$" + data.result.coin);
             },
         });

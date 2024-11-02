@@ -42,7 +42,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|min:3|max:50|unique:users,username',
             'phone' => 'required|string|regex:/^0[0-9]{9}$/|unique:users,phone',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
+            'password_confirmation' => 'required|string|min:6|same:password',
             'register_code' => 'required|captcha'
         ], [
             'username.required' => 'Tên người dùng là bắt buộc.',
@@ -62,7 +63,12 @@ class AuthController extends Controller
             'password.confirmed' => 'Mật khẩu xác nhận không khớp.',
 
             'register_code.required' => 'Mã đăng ký là bắt buộc.',
-            'register_code.captcha' => 'Mã xác nhận không hợp lệ.'
+            'register_code.captcha' => 'Mã xác nhận không hợp lệ.',
+
+            'password_confirmation.required' => 'Mật khẩu xác nhận là bắt buộc.',
+            'password_confirmation.string' => 'Mật khẩu xác nhận phải là chuỗi.',
+            'password_confirmation.min' => 'Mật khẩu xác nhận phải có ít nhất 6 ký tự.',
+            'password_confirmation.same' => 'Mật khẩu xác nhận không khớp.',
         ]);
 
         if ($validator->fails()) {
@@ -104,7 +110,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|min:3|max:50|unique:users,username',
             'phone' => 'required|string|regex:/^0[0-9]{9}$/|unique:users,phone',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
             'displayname' => 'required|string|min:3|max:50',
         ], [
             'username.required' => 'Tên người dùng là bắt buộc.',

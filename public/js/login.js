@@ -63,18 +63,26 @@ $(document).ready(function () {
                 $("#enterUsernameForm").removeClass("hidden");
             },
             error: function (e, data) {
-                console.log("e.responseJSON.errors: ", e.responseJSON.errors);
-
                 const passwordFieldErrors = e.responseJSON.errors["password"];
                 const usernameFieldErrors = e.responseJSON.errors["username"];
                 const phoneFieldErrors = e.responseJSON.errors["phone"];
                 const register_code = e.responseJSON.errors["register_code"];
+                const passwordConfirmFieldErrors =
+                    e.responseJSON.errors["password_confirmation"];
 
                 // Render ra id của error từng field
                 if (passwordFieldErrors) {
                     $(".password-error").text(passwordFieldErrors[0]);
                 } else {
                     $(".password-error").text("");
+                }
+
+                if (passwordConfirmFieldErrors) {
+                    $(".password-confirmation-error").text(
+                        passwordConfirmFieldErrors[0]
+                    );
+                } else {
+                    $(".password-confirmation-error").text("");
                 }
 
                 if (usernameFieldErrors) {

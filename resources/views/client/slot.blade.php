@@ -59,7 +59,7 @@
 									<span>{{ $slot->name }}</span>
 								</div>
 								<div class="slot_percent_1 percent_{{ $slot->id }}">
-									{{ $slot->percent }}
+									{{ $slot->percent }}%
 								</div>
 
 								<div class="animation-bar-1">

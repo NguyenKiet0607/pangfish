@@ -77,8 +77,10 @@
     border: unset !important;
     border-radius: unset !important;
     box-shadow: unset !important;
-    height: 543px;
-    width: 436px !important;
+    height: 90vh;
+    max-width: none !important;
+    /* height: 543px; */
+    /* width: 436px !important; */
 }
 
 #bg-intro {

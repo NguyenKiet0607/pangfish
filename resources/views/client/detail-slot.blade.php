@@ -32,8 +32,8 @@
                             <div class="img-child flex justify-center items-center">
                                 <img class="rounded-full size-[40px]" alt="" src="{{ asset('images/'.$game->image_url) }}">
                             </div>
-                            <div class="title">
-                                {{ $game->name }}
+                            <div class="title flex-1 overflow-hidden">
+                                <span>{{ $game->name }}</span>
                             </div>
                         </div>
                         <div class="count-down">
@@ -105,7 +105,7 @@
                 </div>
                 <div class="round bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] px-3 py-2 text-white rounded-full">Nhận khung giờ chơi</div>
                 <div id="text-line1-mobile" class="text-line-mobile" ></div>
-                <div id="text-line2-mobile" class="text-line-mobile""></div>
+                <div id="text-line2-mobile" class="text-line-mobile"></div>
             </div>
         </section>
         <style>
@@ -134,4 +134,28 @@
         var slug = '{{ $slug }}';
     </script>
     <script src="{{ asset('js/game-detail.js') }}"></script>
+
+    <script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const gameName = document.querySelector('.title');
+
+		    const textElement = gameName.querySelector('span');
+
+			// Create a temporary element to measure text width
+			const tempElement = document.createElement('span');
+			tempElement.style.visibility = 'hidden';
+			tempElement.style.whiteSpace = 'nowrap';
+			tempElement.style.position = 'absolute';
+			tempElement.style.fontSize = window.getComputedStyle(textElement).fontSize;
+			tempElement.textContent = textElement.textContent;
+
+			document.body.appendChild(tempElement);
+
+			if (tempElement.offsetWidth > 450) {
+				textElement.classList.add('scrolling-text-game-parent');
+			}
+
+			document.body.removeChild(tempElement);
+	    });
+	</script>
 @endsection

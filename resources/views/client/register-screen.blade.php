@@ -10,52 +10,54 @@
         <div class="fixed h-screen inset-0 z-30" id="enter-username-overlay">
         </div>
 
-        <form id="registerform" action="" class="register-form-screen z-40 px-5">
-            <div class="form-group !mt-20">
-                <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Tên tài khoản" name="username" autocomplete="off" required="">
-                <p class="username-error error-message text-red-500"></p>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Số điện thoại" name="phone" autocomplete="off" required="">
-                <p class="phone-error error-message text-red-500"></p>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Mật khẩu" name="password" autocomplete="off" required="">
-                <p class="password-error error-message text-red-500"></p>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Xác nhận mật khẩu" name="password_confirmation" autocomplete="off" required="">
-                <p class="password_confirmation-error error-message text-red-500"></p> 
-            </div>
-            <div class="row mb-4">
-                <div class="col-md-6 col-6 pr-0">
-                    <input type="text" class="form-control !h-[40px] text-center !text-blue-500 placeholder:text-[#01c0fa] rounded-full placeholder:font-bold" name="register_code" placeholder="CAPCHA">
-                    <p class="register-code-error error-message text-red-500"></p>
+        <form id="registerform" action="" class="register-form-screen z-40">
+            <div class="px-5 pt-20">
+                <div class="form-group">
+                    <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Tên tài khoản" name="username" autocomplete="off" required="">
+                    <p class="username-error error-message !text-sm text-red-500"></p>
                 </div>
-                <div class="col-md-6 col-6">
-                    <div class="flex items-center gap-2">
-                        <img id="captcha_image" src="{{ Captcha::src() }}" alt="captcha" class="flex-1 h-[40px] !border-2 !border-[#01c0fa] rounded-full overflow-hidden">
-                        <button type="button" onclick="refreshCaptcha()" class="w-[40px] h-[40px] flex justify-center items-center !border-2 !border-[#01c0fa] rounded-full overflow-hidden">
-                            <img class="size-[26px]" src="{{ asset('images/graphics/refresh-captcha-icon.png') }}" alt="refresh">
-                        </button>
+                <div class="form-group">
+                    <input type="text" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Số điện thoại" name="phone" autocomplete="off" required="">
+                    <p class="phone-error error-message !text-sm text-red-500"></p>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Mật khẩu" name="password" autocomplete="off" required="">
+                    <p class="password-error error-message !text-sm text-red-500"></p>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control !text-left !text-blue-500 placeholder:text-[#01c0fa] rounded-full" placeholder="Xác nhận mật khẩu" name="password_confirmation" autocomplete="off" required="">
+                    <p class="password-confirmation-error error-message !text-sm text-red-500"></p> 
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6 col-6 pr-0">
+                        <input type="text" class="form-control !h-[40px] text-center !text-blue-500 placeholder:text-[#01c0fa] rounded-full placeholder:font-bold" name="register_code" placeholder="CAPCHA">
+                        <p class="register-code-error error-message !text-sm text-red-500"></p>
                     </div>
+                    <div class="col-md-6 col-6">
+                        <div class="flex items-center gap-2">
+                            <img id="captcha_image" src="{{ Captcha::src() }}" alt="captcha" class="flex-1 h-[40px] !border-2 !border-[#01c0fa] rounded-full overflow-hidden">
+                            <button type="button" onclick="refreshCaptcha()" class="w-[40px] h-[40px] flex justify-center items-center !border-2 !border-[#01c0fa] rounded-full overflow-hidden">
+                                <img class="size-[26px]" src="{{ asset('images/graphics/refresh-captcha-icon.png') }}" alt="refresh">
+                            </button>
+                        </div>
+                    </div>
+                    {{-- <div class="col-md-6 col-6">
+                        <label class="col-form-label !border-2 !border-[#01c0fa] rounded-full !bg-[#FFDE21]" id="captcha">1234</label>
+                    </div> --}}
                 </div>
-                {{-- <div class="col-md-6 col-6">
-                    <label class="col-form-label !border-2 !border-[#01c0fa] rounded-full !bg-[#FFDE21]" id="captcha">1234</label>
-                </div> --}}
+    
+                <input type="hidden" name="displayname">
+    
+                <div class="form-group">
+                    <button id="register-btn" type="submit" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4]  btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng ký </button>
+                </div>
+                
+                <div class="q-register !my-5">
+                    Đã có tài khoản? <a href="{{route('user.login-screen')}}" class="btn-login !text-[#FFDE21]">Đăng nhập</a>
+                </div>
+    
+                <a href="/" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4]  btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
             </div>
-
-            <input type="hidden" name="displayname">
-
-            <div class="form-group">
-                <button id="register-btn" type="submit" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4]  btn btn-model-cc py-2 !border-2 !border-white w-full rounded-full text-white"> Đăng ký </button>
-            </div>
-            
-            <div class="q-register !my-5">
-                Đã có tài khoản? <a href="{{route('user.login-screen')}}" class="btn-login !text-[#FFDE21]">Đăng nhập</a>
-            </div>
-
-            <a href="/" class="!bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4]  btn btn-model-cf py-2 !border-2 !border-white w-full rounded-full text-white">Huỷ thao tác</a>
         </form>
     </div>
     

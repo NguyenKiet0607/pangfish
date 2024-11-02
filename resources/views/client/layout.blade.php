@@ -45,7 +45,8 @@
             </div>
            
             <span class="text-blue-800 font-bold text-lg">
-                @08999981136
+                {{-- @08999981136 --}}
+                {{ env('TELEGRAM_GROUP_LINK') }}
             </span>
         </button>
     </div>
@@ -88,7 +89,8 @@
             </div>
            
             <span class="text-blue-800 font-bold text-lg">
-                @08999981136
+                {{-- @08999981136 --}}
+                {{ env('TELEGRAM_GROUP_LINK') }}
             </span>
         </button>
     </div>
@@ -104,7 +106,7 @@
             <div class="flex items-center gap-3 mt-2 sm:mt-0">
                 <img loading="lazy" width="100" height="100" src="{{asset('images/graphics/avatar.png')}}" alt="">
                 <div class="">
-                    <h1 class="current-username text-left !text-yellow-300"></h1>
+                    <h1 class="current-username text-left !text-yellow-300 truncate max-w-full"></h1>
                     <h1 class="current-coin text-left !text-yellow-300"></h1>
                 </div>
             </div>
@@ -177,7 +179,8 @@
                 <img  width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
             </div>
             <span class="text-blue-800 font-bold text-lg">
-                @08999981136
+                {{-- @08999981136 --}}
+                {{ env('TELEGRAM_GROUP_LINK') }}
             </span>
         </button>
     </div>
