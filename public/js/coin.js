@@ -91,9 +91,9 @@ $(document).ready(function () {
     $(document).on("click", ".btn-help", function () {
         window.open(window.telegramLink, "_blank");
     });
-    $(document).on("click", ".btn-help-coin", function () {
-        window.open(window.telegramContactLink, "_blank");
-    });
+    // $(document).on("click", ".btn-help-coin", function () {
+    //     window.open(window.telegramContactLink, "_blank");
+    // });
 
     $("#help-model .btn-model-cc").click(function (e) {
         $("#help-model").hide();

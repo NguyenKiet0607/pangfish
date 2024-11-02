@@ -39,7 +39,7 @@
             <h1>Bạn muốn nạp xu?</h1>
             <h1>Vui lòng liên hệ với Admin</h1>
         </div>
-        <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help-coin">
+        <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help">
             <div class="border-2 border-white rounded-full size-[35px]">
                 <img loading="lazy" width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
             </div>
@@ -90,7 +90,7 @@
            
             <span class="text-blue-800 font-bold text-lg">
                 {{-- @08999981136 --}}
-                {{ env('SUPPORT') }}
+                {{ env('TELEGRAM_GROUP_LINK') }}
             </span>
         </button>
     </div>
@@ -174,7 +174,7 @@
             </div>
         </div>
         <p class="text-[#00FF09] my-4 text-lg">Vui lòng liên hệ với Admin để nạp thêm</p>
-        <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help-coin">
+        <button class="border-2 flex items-center gap-2 bg-gradient-to-r from-[#00ACE4] to-[#4BE5E4] rounded-full pe-3 btn-help">
             <div class="border-2 border-white rounded-full size-[35px]">
                 <img  width="35" height="35" src="{{asset('images/telegram-logo.svg')}}" alt="">
             </div>

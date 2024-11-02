@@ -57,7 +57,7 @@
 
             <script>
                 window.telegramLink = "https://t.me/{{ env('SUPPORT') }}";
-                window.telegramContactLink = "https://t.me/{{ env('TELEGRAM_GROUP_LINK') }}";
+                // window.telegramContactLink = "https://t.me/{{ env('TELEGRAM_GROUP_LINK') }}";
             </script>
 
             <!-- <div class="header-mobile"> -->
