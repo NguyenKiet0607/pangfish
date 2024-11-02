@@ -45,7 +45,7 @@ class GameController extends Controller
             if ($request->hasFile('image_url')) {
                 // Lưu file ảnh vào thư mục public/images và lấy đường dẫn
                 $file = $request->file('image_url');
-                $newFileName = time().'_'.$file->getClientOriginalName();
+                $newFileName = time() . '_' . $file->getClientOriginalName();
                 $imagePath = $file->move(public_path('/images'), $newFileName);
                 $input['image_url'] = $newFileName;
             }
@@ -54,8 +54,8 @@ class GameController extends Controller
             $game->save(); // save to db
             return redirect()->to(route('games.index'))
                 ->with('success', __('messages.games.created_success'));
-        } catch (\Exception $exception){
-            Log::error('Create game error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Create game error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', 'Create error');
@@ -90,22 +90,22 @@ class GameController extends Controller
             if ($request->hasFile('image_url')) {
                 // Lưu file ảnh vào thư mục public/images và lấy đường dẫn
                 $file = $request->file('image_url');
-                $newFileName = time().'_'.$file->getClientOriginalName();
+                $newFileName = time() . '_' . $file->getClientOriginalName();
                 $imagePath = $file->move(public_path('/images'), $newFileName);
                 $input['image_url'] = $newFileName;
 
                 //Xóa ảnh cũ
                 // Nếu hình ảnh cũ tồn tại
-                if (Storage::disk('public')->exists('public/images/'.$game->image_url)) {
+                if (Storage::disk('public')->exists('images/' . $game->image_url)) {
                     // Xóa hình ảnh cũ
-                    Storage::disk('public')->delete('public/images/'.$game->image_url);
+                    Storage::disk('public')->delete('images/' . $game->image_url);
                 }
             }
             $game->update($input);
             return redirect()->to(route('games.index'))
                 ->with('success', __('messages.games.updated_success'));
-        } catch (\Exception $exception){
-            Log::error('Update game error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Update game error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', __('messages.update_error'));
@@ -120,15 +120,15 @@ class GameController extends Controller
         try {
             //Xóa ảnh cũ
             // Nếu hình ảnh cũ tồn tại
-            if (Storage::disk('public')->exists('public/images/'.$game->image_url)) {
+            if (Storage::disk('public')->exists('images/' . $game->image_url)) {
                 // Xóa hình ảnh cũ
-                Storage::disk('public')->delete('public/images/'.$game->image_url);
+                Storage::disk('public')->delete('images/' . $game->image_url);
             }
             $game->delete();
             return redirect()->to(route('games.index'))
                 ->with('success', __('messages.games.deleted_success'));
-        } catch (\Exception $exception){
-            Log::error('Delete game error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Delete game error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', __('messages.delete_error'));
@@ -145,8 +145,8 @@ class GameController extends Controller
         $gameQuery = (new Game())->getGame($request, true);
         return (new Datatables())->eloquent($gameQuery)
             ->addColumn('action', function ($item) {
-                $credit = $item->role == 2 ? '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="'.$item->id.'" data-model="admin"><i class="fa fa-credit-card">'.__('layouts.users.add_coin').'</i></div>' : '';
-                return $credit.'<a class="btn btn-success btn-xs" href="' . route('games.edit', $item->id) . '">
+                $credit = $item->role == 2 ? '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="' . $item->id . '" data-model="admin"><i class="fa fa-credit-card">' . __('layouts.users.add_coin') . '</i></div>' : '';
+                return $credit . '<a class="btn btn-success btn-xs" href="' . route('games.edit', $item->id) . '">
                          <i class="fa fa-edit"></i> ' . __('layouts.btn_edit') . '</a>';
             })
             ->rawColumns(['action'])

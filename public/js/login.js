@@ -27,7 +27,7 @@ $(document).ready(function () {
                     );
                 } else {
                     $(".error-message").text(
-                        "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."
+                        "Có lỗi xảy ra. Liên hệ admin để được hỗ trợ."
                     );
                     // $("#help-model h3").text(
                     //     "Có lỗi xảy ra. Vui lòng liên hệ admin để được hỗ trợ."

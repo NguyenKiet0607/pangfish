@@ -224,7 +224,7 @@ body {
     font-size: 14px;
     font-weight: 700;
 }
-.slot_percent_1 {
+/* .slot_percent_1 {
     color: #fff;
     font-weight: 700;
     position: absolute;
@@ -232,8 +232,8 @@ body {
     bottom: 40px;
     font-size: 14px;
 
-    padding: 30px; /* Optional: Adjust padding as needed */
-    text-align: center; /* Center the text inside the div */
+    padding: 30px; 
+    text-align: center;
 }
 
 .slot_percent_1::before {
@@ -243,13 +243,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url(../images/background/bg-game-progress-circle.png); /* Set the path to your image */
+    background-image: url(../images/background/bg-game-progress-circle.png);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 1; /* Ensure the background image stays behind the text */
+    z-index: 1; 
     animation: spin 2s linear infinite;
-}
+} */
 
 @keyframes spin {
     from {

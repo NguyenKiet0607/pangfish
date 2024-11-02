@@ -48,19 +48,30 @@
 						</div>
 					</div>
 
-					<div id="game-list" class="grid grid-cols-1 sm:grid-cols-3  gap-5 overflow-y-auto md:overflow-y-visible max-h-[50vh]">
+					<div id="game-list" class="flex-1 grid grid-cols-1 sm:grid-cols-3  gap-5 overflow-y-auto overflow-x-hidden min-h-[50vh] max-h-[50vh]">
 						@foreach($slots as $slot)
 							<a class="game-item" data-name="{{$slot->name}}" href="{{ route('detail-slot', [$slot->slug, $slot->id]) }}">
 							  <div class="slot_item">
-								<div class="slot_image">
-									<img alt="slot image" src="{{ asset('images/'.$slot->image_url) }}">
+								<div class="flex items-center justify-between">
+									<div class="slot_image">
+										<img alt="slot image" src="{{ asset('images/'.$slot->image_url) }}">
+									</div>
+
+									<div class="relative size-[80px]">
+										<img style="transform-origin: center;" class="w-full h-full absolute object-contain animate-spin" src="{{asset('images/background/bg-game-progress-circle.png')}}" />
+										
+										<span class="slot_percent_1 percent_{{ $slot->id }} absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white">{{ $slot->percent }}%</span>
+									</div>
 								</div>
+
+
 								<div class="slot_title mb-2">
 									<span>{{ $slot->name }}</span>
 								</div>
-								<div class="slot_percent_1 percent_{{ $slot->id }}">
+								
+								{{-- <div class="slot_percent_1 percent_{{ $slot->id }}">
 									{{ $slot->percent }}%
-								</div>
+								</div> --}}
 
 								<div class="animation-bar-1">
 									<span class="w-[70%] h-[12px]"></span>
@@ -111,7 +122,7 @@
 
 				document.body.appendChild(tempElement);
 
-				if (tempElement.offsetWidth > 120) {
+				if (tempElement.offsetWidth > 90) {
 					textElement.classList.add('scrolling-text');
 				}
 
@@ -121,7 +132,6 @@
 			});
 		});
 	</script>
-
 	{{-- Search --}}
 	<script>
 		// Handle autocomplete search
