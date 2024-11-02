@@ -57,6 +57,7 @@
 
             <script>
                 window.telegramLink = "https://t.me/{{ env('SUPPORT') }}";
+                window.telegramContactLink = "https://t.me/{{ env('TELEGRAM_GROUP_LINK') }}";
             </script>
 
             <!-- <div class="header-mobile"> -->
@@ -72,9 +73,9 @@
                     <div class="heeader-btn_item btn-help">
                         Hỗ trợ
                     </div>
-                    <script>
+                    {{-- <script>
                         window.telegramLink = "https://t.me/{{ env('SUPPORT') }}";
-                    </script>
+                    </script> --}}
                     <div class="heeader-btn_item btn-logout1">
                         Đăng xuất
                     </div>
