@@ -603,6 +603,11 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
+    .slot_percent_1::before {
+        /* Tắt animation */
+        animation: none;
+    }
+
     .game-item-top {
         display: block !important;
     }
