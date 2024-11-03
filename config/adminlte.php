@@ -1,5 +1,11 @@
 <?php
 
+$PRIVATE_ADMIN = '1';
+$SUPER_ADMIN = '2';
+
+$ADMIN = '2';
+$DEVELOP_ADMIN = '3';
+
 return [
 
     /*
@@ -289,41 +295,49 @@ return [
     |
     */
 
+    /*
+    |--------------------------------------------------------------------------
+    | 1: Super Admin ( quyền cao thứ nhì )
+    | 2: Admin ( quyền cao nhất )
+    | 3: Developer ( quyền thấp nhất )
+    |--------------------------------------------------------------------------
+    */
+
     'menu' => [
         [
             'text' => 'Admins',
             'url'  => '/admin/admins',
             'icon' => 'fas fa-user-secret',
             'active' => ['admins', 'admins*'],
-            'role' => ['1'] //superadmin
+            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN]
         ],
         [
             'text' => 'Khách hàng',
             'url'  => '/admin/users',
             'icon' => 'fas fa-fw fa-user',
             'active' => ['users', 'users*'],
-            'role' => ['1', '2'] //superadmin
+            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN]
         ],
         [
             'text' => 'Codes',
             'url'  => '/admin/codes',
             'icon' => 'fas fa-fw fa-code',
             'active' => ['codes', 'codes*'],
-            'role' => ['1', '2'] //admin
+            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN]
         ],
         [
             'text' => 'Cấu hình',
             'url'  => '/admin/config',
             'icon' => 'fas fa-user-secret',
             'active' => ['admins', 'admins*'],
-            'role' => ['1'] //superadmin
+            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN]
         ],
         [
             'text' => 'Games',
             'url'  => '/admin/games',
             'icon' => 'fas fa-fw fa-gamepad',
             'active' => ['games', 'games*'],
-            'role' => ['1', '3'] //develop
+            'role' => [$PRIVATE_ADMIN]
         ],
     ],
 

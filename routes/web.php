@@ -55,12 +55,12 @@ Route::middleware('admin.login')->group(function () {
     });
     //logout admin
     Route::post('/admin/logout', 'App\Http\Controllers\Admin\AuthController@logout')->name('admin.logout');
-    Route::resource('/admin/admins', 'App\Http\Controllers\Admin\AdminController')->middleware('admin.super');
-    Route::get('/admin/config', [ConfigController::class, 'index'])->name('config.index')->middleware('admin.super');
-    Route::post('/admin/config', [ConfigController::class, 'update'])->name('config.update')->middleware('admin.super');
-    Route::resource('/admin/users', 'App\Http\Controllers\Admin\UserController')->middleware('admin.admin');
-    Route::resource('/admin/codes', 'App\Http\Controllers\Admin\CodeController')->middleware('admin.admin');
-    Route::resource('/admin/games', 'App\Http\Controllers\Admin\GameController')->middleware('admin.super');
+    Route::resource('/admin/admins', 'App\Http\Controllers\Admin\AdminController');
+    Route::get('/admin/config', [ConfigController::class, 'index'])->name('config.index')->middleware('admin.private');
+    Route::post('/admin/config', [ConfigController::class, 'update'])->name('config.update')->middleware('admin.private');
+    Route::resource('/admin/users', 'App\Http\Controllers\Admin\UserController')->middleware('admin.super');
+    Route::resource('/admin/codes', 'App\Http\Controllers\Admin\CodeController')->middleware('admin.super');
+    Route::resource('/admin/games', 'App\Http\Controllers\Admin\GameController')->middleware('admin.private');
     //add credit
     Route::post('/admin/credit/add', 'App\Http\Controllers\Admin\CreditController@add')->name('admin.credit.add');
 });

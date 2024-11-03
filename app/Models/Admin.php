@@ -48,11 +48,22 @@ class Admin extends Authenticatable
                 ->orWhere('email', 'LIKE', "%" . $condition['name'] . "%");
         }
 
-        $query->whereIn('role', [1, 2]);
+        // $query->whereIn('role', [1, 2, 4]);
+        // Kiểm tra role của user đang đăng nhập
+        $currentAdmin = auth('admin')->user();
+        if ($currentAdmin && $currentAdmin->role == 2) { // Nếu là SUPER_ADMIN
+            $query->whereIn('role', [2, 3]); // Chỉ hiện SUPER_ADMIN và DEVELOP
+        } else {
+            $query->whereIn('role', [1, 2, 3]); // Hiện tất cả các role
+        }
 
-        if($returnQuery) {
+        if ($returnQuery) {
             return $query;
         }
+
+        // if ($returnQuery) {
+        //     return $query;
+        // }
         return $query->all();
     }
 }

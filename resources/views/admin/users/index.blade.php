@@ -96,9 +96,15 @@
                     {{-- Buttons --}}
                     <div class="col-6" style="padding: 0">
                         <div style="width: 100%" class="d-flex align-items-center justify-content-between">
-                            <button id="export-excel-btn" type="button" style="min-width: 110px;" class="btn btn-default btn-search">
-                                Tải excel
-                            </button>
+                            @if(auth('admin')->user()->role == 1)  {{-- Chỉ hiện nút khi không phải SUPER_ADMIN --}}
+                                <button id="export-excel-btn" type="button" style="min-width: 110px;" class="btn btn-default btn-search">
+                                    Tải excel
+                                </button>
+                            @else
+                                <button type="button" style="min-width: 110px; visibility: hidden;" class="btn btn-default btn-search">
+                                    Tải excel
+                                </button>
+                            @endif
                             <div class="d-flex align-items-center">
                                 <input id="goto-page-input" type="text" class="form-control" placeholder="Nhập số trang">
 
