@@ -22,8 +22,10 @@ class GameController extends Controller
             return $this->datatables($request->all());
         }
 
-        return view('admin.games.index', compact('request'));
+        $parentGames = (new Game())->getParentGames();
+        return view('admin.games.index', compact('request', 'parentGames'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -140,14 +142,22 @@ class GameController extends Controller
      *
      * @param array $request
      */
+
     public function datatables($request)
     {
         $gameQuery = (new Game())->getGame($request, true);
+
+        if (!empty($request['parent_id'])) {
+            $gameQuery->where(function ($query) use ($request) {
+                $query->where('parent_id', $request['parent_id'])
+                    ->orWhere('id', $request['parent_id']);
+            });
+        }
+
         return (new Datatables())->eloquent($gameQuery)
             ->addColumn('action', function ($item) {
-                $credit = $item->role == 2 ? '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="' . $item->id . '" data-model="admin"><i class="fa fa-credit-card">' . __('layouts.users.add_coin') . '</i></div>' : '';
-                return $credit . '<a class="btn btn-success btn-xs" href="' . route('games.edit', $item->id) . '">
-                         <i class="fa fa-edit"></i> ' . __('layouts.btn_edit') . '</a>';
+                return '<a class="btn btn-success btn-xs" href="' . route('games.edit', $item->id) . '">
+                     <i class="fa fa-edit"></i> ' . __('layouts.btn_edit') . '</a>';
             })
             ->rawColumns(['action'])
             ->make(true);

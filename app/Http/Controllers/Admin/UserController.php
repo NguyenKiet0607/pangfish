@@ -134,6 +134,9 @@ class UserController extends Controller
             ->editColumn('phone', function ($item) {
                 return (auth('admin')->user()->role == 2) ? null : $item->phone;
             })
+            ->editColumn('created_at', function ($item) {
+                return $item->created_at ? $item->created_at->format('d/m/Y H:i:s') : '';
+            })
             ->addColumn('action', function ($item) {
                 return '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="' . $item->id . '" data-model="user"><i class="fa fa-credit-card">' . __('layouts.users.add_coin') . '</i></div>' .
                     '<a class="btn btn-success btn-xs" href="' . route('users.edit', $item->id) . '">

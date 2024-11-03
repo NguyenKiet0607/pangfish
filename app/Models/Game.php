@@ -27,7 +27,19 @@ class Game extends Model
         'round_count'
     ];
 
-    public function getGame($condition=[], $returnQuery = false)
+
+    public function getParentGames($condition = [], $returnQuery = false)
+    {
+        $query = self::query();
+        $query->where('parent_id', '=', 0);
+
+        if ($returnQuery) {
+            return $query;
+        }
+        return $query->get();
+    }
+
+    public function getGame($condition = [], $returnQuery = false)
     {
         $query = self::query();
 
@@ -36,34 +48,36 @@ class Game extends Model
         }
 
         if (!empty($condition['name'])) {
-            $query->where('name', 'LIKE', '%'.$condition['name'].'%');
+            $query->where(function ($q) use ($condition) {
+                $q->where('name', 'LIKE', '%' . $condition['name'] . '%')
+                    ->orWhereHas('childGames', function ($query) use ($condition) {
+                        $query->where('name', 'LIKE', '%' . $condition['name'] . '%');
+                    });
+            });
         }
 
         if (!empty($condition['slug'])) {
             $query->where('slug', $condition['slug']);
         }
 
-        if (isset($condition['parent_id']) ) {
-            $query->where('parent_id', $condition['parent_id']);
-        }
-
-        if (isset($condition['workplace']) ) {
+        if (isset($condition['workplace'])) {
             $query->whereIn('workplace', [0, $condition['workplace']]);
         }
 
-        if($returnQuery) {
+        if ($returnQuery) {
             return $query;
         }
         return $query->get();
     }
-    public function getParentGames($condition=[], $returnQuery = false)
-    {
-        $query = self::query();
-        $query->where('parent_id','=',0);
 
-        if($returnQuery) {
-            return $query;
-        }
-        return $query->get();
+    // Thêm relationships
+    public function childGames()
+    {
+        return $this->hasMany(Game::class, 'parent_id');
+    }
+
+    public function parentGame()
+    {
+        return $this->belongsTo(Game::class, 'parent_id');
     }
 }

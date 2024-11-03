@@ -30,20 +30,30 @@
         <!-- /.card-header -->
         <div class="card-body">
             <form method="GET" id="form-admin-search" action="{{ route('games.index') }}">
+               
+
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group row">
                             <div class="col-sm-12">
+                                <select class="form-control" id="parent_id" name="parent_id">
+                                    <option value="">
+                                        Chọn game cha
+                                    </option>
+                                    @foreach($parentGames as $game)
+                                        <option value="{{ $game->id }}">{{ $game->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div style="margin-top: 20px" class="col-sm-12">
                                 <input type="text" class="form-control" value="{{ $request->name }}" id="name" name="name" placeholder="{{ __('layouts.games.placeholder_search') }}">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group row">
-                            <div class="col-sm-8">
-                                <button class="btn btn-default btn-search"><i class="fa fa-search"></i> {{ __('layouts.btn_search') }}</button>
-                                <a class="btn btn-primary" href="{{ route('games.create') }}"><i class="fa fa-plus"></i> {{ __('layouts.btn_create') }}</a>
-                            </div>
+                        <div class="form-group d-flex align-items-center justify-content-end">
+                            <a class="btn btn-primary" href="{{ route('games.create') }}"><i class="fa fa-plus"></i> {{ __('layouts.btn_create') }}</a>
                         </div>
                     </div>
                 </div>

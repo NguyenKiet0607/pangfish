@@ -23,6 +23,7 @@ window.addEventListener("load", function () {
             { data: "coin", name: "coin" },
             { data: "total_credit", name: "total_credit" },
             { data: "phone", name: "phone" },
+            { data: "created_at", name: "created_at" }, // Thêm cột mới
             { data: "last_login", name: "last_login" },
             { data: "ip", name: "ip" },
             { data: "status", name: "status" },
@@ -43,9 +44,10 @@ window.addEventListener("load", function () {
             { width: "10%", targets: 3 },
             { width: "15%", targets: 4 },
             { width: "10%", targets: 5 },
-            { width: "10%", targets: 6 },
+            { width: "10%", targets: 6 }, // Thêm width cho cột mới
             { width: "10%", targets: 7 },
             { width: "10%", targets: 8 },
+            { width: "10%", targets: 9 },
         ],
         lengthMenu: [
             [10, 20, 50, 100],

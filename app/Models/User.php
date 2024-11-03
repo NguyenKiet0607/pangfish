@@ -78,9 +78,9 @@ class User extends Authenticatable implements JWTSubject
 
 
         //admin chi tim duoc theo ten, khong list duoc
-        if (Auth::guard('admin')->user()->role == 2 && empty($condition['name'])) {
-            $query->where('username', '=', '');
-        }
+        // if (Auth::guard('admin')->user()->role == 2 && empty($condition['name'])) {
+        //     $query->where('username', '=', '');
+        // }
 
         // Thêm filter theo khoảng ngày
         if (!empty($condition['start_date']) && !empty($condition['end_date'])) {
