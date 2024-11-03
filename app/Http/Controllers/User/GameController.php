@@ -20,15 +20,15 @@ class GameController extends Controller
 
     public function slot($slug)
     {
-        $game = (new Game())->getGame(['slug' => $slug], true)->first();
-        $slots = (new Game())->getGame(['parent_id' => $game->id]);
+        $game = (new Game())->getGameClient(['slug' => $slug], true)->first();
+        $slots = (new Game())->getGameClient(['parent_id' => $game->id]);
 
         return view('client/slot', compact('game', 'slots'));
     }
     //List game
     public function games(Request $request)
     {
-        $games = (new Game())->getGame($request->query());
+        $games = (new Game())->getGameClient($request->query());
 
         if ($request->get('parent_id') > 0) {
             foreach ($games as $game) {

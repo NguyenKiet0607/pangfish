@@ -39,6 +39,36 @@ class Game extends Model
         return $query->get();
     }
 
+    public function getGameClient($condition = [], $returnQuery = false)
+    {
+        $query = self::query();
+
+        if (!empty($condition['id'])) {
+            $query->where('id', $condition['id']);
+        }
+
+        if (!empty($condition['name'])) {
+            $query->where('name', 'LIKE', '%' . $condition['name'] . '%');
+        }
+
+        if (!empty($condition['slug'])) {
+            $query->where('slug', $condition['slug']);
+        }
+
+        if (isset($condition['parent_id'])) {
+            $query->where('parent_id', $condition['parent_id']);
+        }
+
+        if (isset($condition['workplace'])) {
+            $query->whereIn('workplace', [0, $condition['workplace']]);
+        }
+
+        if ($returnQuery) {
+            return $query;
+        }
+        return $query->get();
+    }
+
     public function getGame($condition = [], $returnQuery = false)
     {
         $query = self::query();
