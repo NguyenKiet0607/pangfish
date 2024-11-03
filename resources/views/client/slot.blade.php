@@ -150,19 +150,23 @@
 				return;
 			}
 
+			function removeVietnameseTones(str) {
+			    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D");
+			}
 			
 		    gameItems.forEach((gameItem) => {
 		        const gameName = gameItem.getAttribute('data-name');
 
 		        if (gameName) { // Kiểm tra nếu gameName không phải null
-		            const gameNameLowerCase = gameName.toLowerCase();
+			        const gameNameLowerCase = removeVietnameseTones(gameName.toLowerCase());
+			        const searchValueLowerCase = removeVietnameseTones(searchValue.toLowerCase());
 
-		            if (gameNameLowerCase.includes(searchValue)) {
-		                gameItem.style.display = 'block';
-		            } else {
-		                gameItem.style.display = 'none';
-		            }
-		        } else {
+			        if (gameNameLowerCase.includes(searchValueLowerCase)) {
+			            gameItem.style.display = 'block';
+			        } else {
+			            gameItem.style.display = 'none';
+			        }
+			    } else {
 		            console.warn("data-name attribute is missing for game item:", gameItem);
 		            gameItem.style.display = 'none'; // Ẩn nếu không có data-name
 		        }

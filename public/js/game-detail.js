@@ -26,11 +26,15 @@ $(document).ready(function () {
 
                 // Get round_start and round_end
                 if (data.result.round_start && data.result.round_end) {
+                    // Get hours and minutes
+                    const start = data.result.round_start.split(":");
+                    const end = data.result.round_end.split(":");
+
                     $("#round-time").text(
-                        data.result.round_start + " - " + data.result.round_end
+                        `${start[0]}:${start[1]} - ${end[0]}:${end[1]}`
                     );
                 } else {
-                    $("#round-time").text("00:00:00 - 00:00:00");
+                    $("#round-time").text("00:00 - 00:00");
                 }
             },
         });
@@ -58,6 +62,12 @@ $(document).ready(function () {
                 }
             },
         });
+
+        // Kiểm tra nếu #text-line1 và #text-line2 có hiển thị không
+        if ($("#text-line1").is(":visible")) {
+            return;
+        }
+
         $("#round-modal").show();
     });
 
@@ -67,7 +77,8 @@ $(document).ready(function () {
         $("#text-line2").show();
         $("#text-line1-mobile").show();
         $("#text-line2-mobile").show();
-        $(".round").hide();
+        $("#round-time-bg h3").hide();
+        // $(".round").hide();
     });
 });
 

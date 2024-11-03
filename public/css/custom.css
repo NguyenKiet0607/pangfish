@@ -367,20 +367,20 @@ body {
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
 }
 .count-down-title {
     color: #1fe7fe;
     font-weight: 700;
-    position: relative;
-    bottom: 25px;
+    /* position: relative;
+    bottom: 25px; */
 }
 .count-down-time {
     /* left: 260px;
     bottom: -15px; */
     font-size: 44px;
     color: #1fe7fe;
-    /* margin-left: 18px; */
+    margin-left: 18px;
 }
 .count-down-image {
     right: 40px;
@@ -570,7 +570,7 @@ body {
 
     color: #fff;
     font-weight: bold;
-    padding: 5px 10px;
+    /* padding: 5px 10px; */
     border-radius: 5px;
     text-align: center;
 }
@@ -578,7 +578,7 @@ body {
 #text-line1 {
     top: 24px;
     font-size: 24px;
-    background: linear-gradient(#3aed1a, #14461e);
+    background: #fff;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

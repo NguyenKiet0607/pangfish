@@ -19,7 +19,7 @@ return [
         'not_found' => 'Không tìm thấy người dùng',
         'add_credit_success' => 'Cộng tiền thành công',
         'add_credit_fail' => 'Cộng tiền thất bại',
-        'admin_not_enough_credit' => 'Tài khoản không đủ tiền',
+        'admin_not_enough_credit' => 'Vui lòng liên hệ Superadmin để nhận thêm xu',
     ],
     "codes" => [
         "created_success" => "Tạo code thành công",

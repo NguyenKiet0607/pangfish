@@ -51,6 +51,10 @@
 
                             <div id="round-time-bg" class="round flex justify-center items-center cursor-pointer">
                                 <h3 class="text-white text-lg font-bold">Nhận khung giờ chơi</h3>
+                                <div>
+                                    <div id="text-line1" class="text-line" style="display: none;"></div>
+                                    <div id="text-line2" class="text-line" style="display: none;"></div> 
+                                </div>
                             </div>
 
                             {{-- <img class="w-[300px] h-[74px] cursor-pointer" alt="" src="{{ asset('images/graphics/btn-game-time.png') }}"> --}}

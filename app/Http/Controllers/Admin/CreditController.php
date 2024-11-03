@@ -19,7 +19,7 @@ class CreditController extends Controller
         }
         if ($request->model == 'user') {
             return $this->addCreditUser($request->id, $request->credit);
-        }else{
+        } else {
             return $this->addCreditAdmin($request->id, $request->credit);
         }
     }
@@ -32,30 +32,30 @@ class CreditController extends Controller
         $errorMessage = null;
         if (!$user) {
             $errorMessage = __('messages.users.not_found');
-        }elseif ($userLogin->role === 2 && $userLogin->coin < $credit) { //Check if admin logged in has not enough credit
+        } elseif ($userLogin->role === 3 && $userLogin->coin < $credit) { //Check if admin logged in has not enough credit
             $errorMessage = __('messages.users.admin_not_enough_credit');
         }
-        if(is_null($errorMessage)){
+        if (is_null($errorMessage)) {
             DB::beginTransaction();
             try {
                 //Sub credit of admin logged in
-                if ($userLogin->role === 2 && $credit > 0){
+                if ($userLogin->role === 2 && $credit > 0) {
                     $userLogin->coin -= $credit;
                 }
-            //    $userLogin->total_credit += $credit;
+                //    $userLogin->total_credit += $credit;
                 $userLogin->save();
                 //Add credit to user
                 $user->coin += $credit;
                 $user->total_credit += $credit;
-                if($user->coin <0)
+                if ($user->coin < 0)
                     $user->coin = 0;
-                if($user)
-                $user->save();
+                if ($user)
+                    $user->save();
                 DB::commit();
                 return redirect()->back()->with('success', __('messages.users.add_credit_success'));
             } catch (\Exception $exception) {
                 DB::rollBack();
-                Log::error('Add credit error: '.$exception->getMessage());
+                Log::error('Add credit error: ' . $exception->getMessage());
                 $errorMessage = __('messages.users.add_credit_fail');
             }
         }
@@ -72,20 +72,20 @@ class CreditController extends Controller
         if (!$admin) {
             $errorMessage = __('messages.admins.not_found');
         }
-        if(is_null($errorMessage)){
+        if (is_null($errorMessage)) {
             DB::beginTransaction();
             try {
                 //Add credit to admin
                 $admin->coin += $credit;
                 $admin->total_credit += $credit;
                 $admin->save();
-               // $userLogin->total_credit += $credit;
+                // $userLogin->total_credit += $credit;
                 $userLogin->save();
                 DB::commit();
                 return redirect()->back()->with('success', __('messages.admins.add_credit_success'));
             } catch (\Exception $exception) {
                 DB::rollBack();
-                Log::error('Add credit error: '.$exception->getMessage());
+                Log::error('Add credit error: ' . $exception->getMessage());
                 $errorMessage = __('messages.admins.add_credit_fail');
             }
         }

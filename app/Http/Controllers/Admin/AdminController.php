@@ -20,7 +20,11 @@ class AdminController extends Controller
             return $this->datatables($request->all());
         }
 
-        return view('admin.admins.index', compact('request'));
+        // Lấy ID của admin đang đăng nhập
+        $currentAdminId = auth('admin')->user()->id;
+
+        return view('admin.admins.index', compact('request', 'currentAdminId'));
+        // return view('admin.admins.index', compact('request'));
     }
 
     /**
@@ -44,8 +48,8 @@ class AdminController extends Controller
             $admin->save(); // save to db
             return redirect()->to(route('admins.index'))
                 ->with('success', __('messages.admins.created_success'));
-        } catch (\Exception $exception){
-            Log::error('Create admin error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Create admin error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', 'Create error');
@@ -83,8 +87,8 @@ class AdminController extends Controller
             $admin->update($input);
             return redirect()->to(route('admins.index'))
                 ->with('success', __('messages.admins.updated_success'));
-        } catch (\Exception $exception){
-            Log::error('Update admin error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Update admin error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', __('messages.update_error'));
@@ -100,8 +104,8 @@ class AdminController extends Controller
             $admin->delete();
             return redirect()->to(route('admins.index'))
                 ->with('success', __('messages.admins.deleted_success'));
-        } catch (\Exception $exception){
-            Log::error('Delete admin error: '.$exception->getMessage());
+        } catch (\Exception $exception) {
+            Log::error('Delete admin error: ' . $exception->getMessage());
 
             return redirect()->back()
                 ->with('error', __('messages.delete_error'));
@@ -115,9 +119,11 @@ class AdminController extends Controller
      */
     public function datatables($request)
     {
-        $adminQuery = Admin::getAll($request,
-            ['id', 'username', 'email', 'role', 'status', 'coin','total_credit'],
-            true);
+        $adminQuery = Admin::getAll(
+            $request,
+            ['id', 'username', 'email', 'role', 'status', 'coin', 'total_credit'],
+            true
+        );
         return (new Datatables())->eloquent($adminQuery)
             ->editColumn('role', function ($item) {
                 return __('layouts.role.' . $item->role);
@@ -127,8 +133,8 @@ class AdminController extends Controller
                     : '<i class="text-danger fa fa-circle"></i>';
             })
             ->addColumn('action', function ($item) {
-                $credit = $item->role == 2 ? '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="'.$item->id.'" data-model="admin"><i class="fa fa-credit-card">'.__('layouts.users.add_coin').'</i></div>' : '';
-                return $credit.'<a class="btn btn-success btn-xs" href="' . route('admins.edit', $item->id) . '">
+                $credit = $item->role == 2 ? '<div class="btn btn-primary btn-xs credit" data-toggle="modal" data-id="' . $item->id . '" data-model="admin"><i class="fa fa-credit-card">' . __('layouts.users.add_coin') . '</i></div>' : '';
+                return $credit . '<a class="btn btn-success btn-xs" href="' . route('admins.edit', $item->id) . '">
                          <i class="fa fa-edit"></i> ' . __('layouts.btn_edit') . '</a>';
             })
             ->editColumn('id', function ($item) {

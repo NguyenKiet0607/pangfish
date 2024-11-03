@@ -21,7 +21,7 @@
 <div class="model-logout model-logout_active" style="display: none" id="{{ $id }}">
     <div class="model-logout_overlay"></div>
     <div class="relative flex flex-col justify-around items-center">
-        <img class="close-btn absolute top-[-28px] right-[0px] cursor-pointer z-10" width="96" height="96" src="{{asset('images/graphics/btn-close-round.png')}}" alt="">
+        <img class="close-btn btn-model-cc absolute top-[-28px] right-[0px] cursor-pointer z-10" width="96" height="96" src="{{asset('images/graphics/btn-close-round.png')}}" alt="">
         <div id="bg-rounded-popup" class="relative flex flex-col justify-around px-[40px]">
             <div id="bg-rounded-popup-inner" class="flex items-center">
                 <div>

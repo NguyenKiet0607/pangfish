@@ -83,6 +83,7 @@ class UserController extends Controller
             $user->fill($input);
             $user->password = bcrypt($request->password);
             $user->status = 1;
+            $user->coin = env('DEFAULT_COIN', 0);
             $user->save();
             return response()->json([
                 'code' => 200,

@@ -15,19 +15,20 @@ class ConfigController extends Controller
         $telegram = env('TELEGRAM_GROUP_LINK', '');
         $support = env('SUPPORT', '');
 
-        return view('admin.config.index', compact('phone', 'telegram','support'));
+        return view('admin.config.index', compact('phone', 'telegram', 'support'));
     }
 
     public function update(Request $request)
     {
-//        $request->validate([
-//            'phone' => 'required|string',
-//            'telegram' => 'required|string',
-//        ]);
+        //        $request->validate([
+        //            'phone' => 'required|string',
+        //            'telegram' => 'required|string',
+        //        ]);
 
         $this->setEnvironmentValue('PHONE_NUMBER', $request->phone);
         $this->setEnvironmentValue('TELEGRAM_GROUP_LINK', $request->telegram);
         $this->setEnvironmentValue('SUPPORT', $request->support);
+        $this->setEnvironmentValue('DEFAULT_COIN', $request->default_coin);
 
         return redirect()->back()->with('success', 'Configuration updated successfully.');
     }

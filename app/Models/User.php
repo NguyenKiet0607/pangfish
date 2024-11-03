@@ -71,16 +71,27 @@ class User extends Authenticatable implements JWTSubject
             $query->where('id', $condition['id']);
         }
 
-        if (!empty($condition['name'])) {
-            $query->where('username', '=', $condition['name'])
-                ->orWhere('name', '=', $condition['name']);
-        }
+        // if (!empty($condition['name'])) {
+        //     $query->where('username', '=', $condition['name'])
+        //         ->orWhere('name', '=', $condition['name']);
+        // }
 
 
         //admin chi tim duoc theo ten, khong list duoc
-        // if (Auth::guard('admin')->user()->role == 2 && empty($condition['name'])) {
-        //     $query->where('username', '=', '');
-        // }
+        if (Auth::guard('admin')->user()->role == 3 && empty($condition['name'])) {
+            $query->where('username', '=', '');
+        }
+
+        if (Auth::guard('admin')->user()->role == 3 && !empty($condition['name'])) {
+            $query->where(function ($query) {
+                $query->whereNull('staff_id')->orWhere('staff_id', Auth::guard('admin')->user()->id);
+            });
+        }
+
+        if (Auth::guard('admin')->user()->role != 3  &&  !empty($condition['name'])) {
+            $query->where('username', '=', $condition['name'])
+                ->orWhere('name', '=', $condition['name']);
+        }
 
         // Thêm filter theo khoảng ngày
         if (!empty($condition['start_date']) && !empty($condition['end_date'])) {

@@ -27,6 +27,10 @@
         <label for="telegram">Link Hỗ trợ:</label>
         <input type="text" class="form-control" id="support" name="support" value="{{ $support }}">
     </div>
+    <div class="form-group">
+        <label for="telegram">Số xu mặc định cấp cho tài khoản mới:</label>
+        <input type="text" class="form-control" id="support" name="default_coin" value="{{ env('DEFAULT_COIN') }}">
+    </div>
     <button type="submit" class="btn btn-primary">Lưu</button>
 </form>
 @stop

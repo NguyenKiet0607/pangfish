@@ -16,7 +16,7 @@ class CheckAdmin
     public function handle(Request $request, Closure $next): Response
     {
         //Check if user logged in is super admin
-        if (!in_array(auth('admin')->user()->role, [2, 1])) {
+        if (!in_array(auth('admin')->user()->role, [1, 2])) {
             return redirect()->back()->with('error', __('messages.admins.not_authorize'));
         }
         return $next($request);

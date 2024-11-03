@@ -36,12 +36,19 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+
+        // Get current admin 
+
+        $current_admin = auth('admin')->user();
+
         $input = $request->validated();
         try {
             $user = new User();
             $user->fill($input);
             $user->password = bcrypt($input['password']);
             $user->tenant_code = env('TENANT_CODE_DEFAULT', '001');
+            $user->staff_id = $current_admin->id;
+            $user->coin = env('DEFAULT_COIN', 0);
             if (auth('admin')->user()->role == 2) {
                 $user->tenant_code = auth('admin')->user()->tenant_code;
             }

@@ -5061,7 +5061,7 @@ header .header-col-R .hamburger:hover .bar3 {
     background-position: center;
     background-repeat: no-repeat;
     width: 300px; /* 80% of the viewport width */
-    height: 70px; /* 80% of the viewport height */
+    height: 100px; /* 80% of the viewport height */
 }
 
 #bg-game-detail-progress-circle {

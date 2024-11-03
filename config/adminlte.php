@@ -3,7 +3,7 @@
 $PRIVATE_ADMIN = '1';
 $SUPER_ADMIN = '2';
 
-$ADMIN = '2';
+$ADMIN = '3';
 $DEVELOP_ADMIN = '3';
 
 return [
@@ -316,14 +316,14 @@ return [
             'url'  => '/admin/users',
             'icon' => 'fas fa-fw fa-user',
             'active' => ['users', 'users*'],
-            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN]
+            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN, $ADMIN]
         ],
         [
             'text' => 'Codes',
             'url'  => '/admin/codes',
             'icon' => 'fas fa-fw fa-code',
             'active' => ['codes', 'codes*'],
-            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN]
+            'role' => [$SUPER_ADMIN, $PRIVATE_ADMIN, $ADMIN]
         ],
         [
             'text' => 'Cấu hình',
