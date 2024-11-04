@@ -71,26 +71,34 @@ class User extends Authenticatable implements JWTSubject
             $query->where('id', $condition['id']);
         }
 
-        // if (!empty($condition['name'])) {
-        //     $query->where('username', '=', $condition['name'])
-        //         ->orWhere('name', '=', $condition['name']);
-        // }
-
+        $currentAdmin = Auth::guard('admin')->user();
+        $currentAdminRole = $currentAdmin->role;
+        $currentAdminId = $currentAdmin->id;
 
         //admin chi tim duoc theo ten, khong list duoc
-        if (Auth::guard('admin')->user()->role == 3 && empty($condition['name'])) {
+        if ($currentAdminRole == 3 && empty($condition['name']) && empty($condition['start_date']) && empty($condition['end_date']) && empty($condition['start_id']) && empty($condition['end_id'])) {
             $query->where('username', '=', '');
         }
 
-        if (Auth::guard('admin')->user()->role == 3 && !empty($condition['name'])) {
-            $query->where(function ($query) {
-                $query->whereNull('staff_id')->orWhere('staff_id', Auth::guard('admin')->user()->id);
+        if ($currentAdminRole == 3) {
+            if (!empty($condition['name'])) {
+                $query->where(function ($q) use ($condition) {
+                    $q->where('username', 'like', '%' . $condition['name'] . '%')
+                        ->orWhere('name', 'like', '%' . $condition['name'] . '%');
+                });
+            }
+
+            $query->where(function ($q) use ($currentAdminId) {
+                $q->where('staff_id', $currentAdminId)
+                    ->orWhereNull('staff_id');
             });
         }
 
         if (Auth::guard('admin')->user()->role != 3  &&  !empty($condition['name'])) {
-            $query->where('username', '=', $condition['name'])
-                ->orWhere('name', '=', $condition['name']);
+            $query->where(function ($q) use ($condition) {
+                $q->where('username', 'like', '%' . $condition['name'] . '%')
+                    ->orWhere('name', 'like', '%' . $condition['name'] . '%');
+            });
         }
 
         // Thêm filter theo khoảng ngày
