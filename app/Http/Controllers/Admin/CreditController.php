@@ -39,7 +39,7 @@ class CreditController extends Controller
             DB::beginTransaction();
             try {
                 //Sub credit of admin logged in
-                if ($userLogin->role === 2 && $credit > 0) {
+                if ($userLogin->role === 3 && $credit > 0) {
                     $userLogin->coin -= $credit;
                 }
                 //    $userLogin->total_credit += $credit;
