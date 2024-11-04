@@ -147,7 +147,7 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'password' => bcrypt($request->password), // Hash password
             'name' => $request->displayname,
-            'coin' => 0,
+            'coin' => env('DEFAULT_COIN', 0),
         ]);
 
 
